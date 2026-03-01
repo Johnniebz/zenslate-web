@@ -45,20 +45,6 @@
             line-height: 1.3;
         }
 
-        /* Texture overlay */
-        .texture {
-            position: relative;
-        }
-
-        .texture::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-        }
-
         /* Navigation */
         nav {
             position: fixed;
@@ -84,30 +70,6 @@
             letter-spacing: 0.02em;
         }
 
-        .logo span {
-            font-weight: 400;
-            font-style: italic;
-            opacity: 0.7;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--wood);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--terracotta);
-        }
-
         .nav-cta {
             background: var(--earth);
             color: var(--cream);
@@ -124,13 +86,16 @@
             transform: translateY(-2px);
         }
 
-        /* Hero */
+        /* Hero - Product Focused */
         .hero {
             min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding-top: 80px;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--parchment) 50%, var(--sand) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 8% 80px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--parchment) 100%);
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -138,44 +103,31 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(200, 107, 89, 0.08) 0%, transparent 70%);
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%235C3D2E' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             pointer-events: none;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 4rem 4rem 4rem 10%;
-            position: relative;
-            z-index: 2;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(92, 107, 84, 0.12);
-            color: var(--sage);
-            padding: 0.5rem 1rem;
+            background: var(--earth);
+            color: var(--sand);
+            padding: 0.5rem 1.25rem;
             border-radius: 100px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            width: fit-content;
+            letter-spacing: 0.15em;
             margin-bottom: 2rem;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 5.5vw, 4.5rem);
+            font-size: clamp(3rem, 6vw, 5rem);
             color: var(--earth);
             margin-bottom: 1.5rem;
-            font-weight: 500;
+            max-width: 800px;
         }
 
         .hero h1 em {
@@ -184,17 +136,57 @@
         }
 
         .hero-desc {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--wood);
-            max-width: 480px;
-            margin-bottom: 2.5rem;
+            max-width: 550px;
+            margin-bottom: 3rem;
             opacity: 0.85;
+        }
+
+        /* Product Showcase */
+        .hero-products {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-product {
+            position: relative;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-product:hover {
+            transform: translateY(-10px) rotate(0deg) !important;
+        }
+
+        .hero-product:nth-child(1) {
+            transform: rotate(-8deg);
+        }
+
+        .hero-product:nth-child(2) {
+            transform: translateY(-20px);
+            z-index: 2;
+        }
+
+        .hero-product:nth-child(3) {
+            transform: rotate(8deg);
+        }
+
+        .hero-product img {
+            width: 200px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px rgba(61, 41, 20, 0.2);
         }
 
         .hero-cta {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn-primary {
@@ -209,8 +201,6 @@
             align-items: center;
             gap: 0.75rem;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -236,140 +226,11 @@
             color: var(--cream);
         }
 
-        /* Hero Visual */
-        .hero-visual {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem;
-        }
-
-        .hero-image-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .hero-main-image {
-            width: 100%;
-            border-radius: 24px;
-            box-shadow: 0 40px 80px rgba(61, 41, 20, 0.2);
-            transform: rotate(3deg);
-        }
-
-        .hero-accent-image {
-            position: absolute;
-            width: 55%;
-            border-radius: 16px;
-            box-shadow: 0 30px 60px rgba(61, 41, 20, 0.25);
-            bottom: -10%;
-            left: -15%;
-            transform: rotate(-5deg);
-        }
-
-        .hero-floating {
-            position: absolute;
-            background: white;
-            padding: 1.25rem 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 20px 50px rgba(61, 41, 20, 0.15);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .hero-floating.top {
-            top: 10%;
-            right: 0;
-        }
-
-        .hero-floating.bottom {
-            bottom: 25%;
-            right: -5%;
-        }
-
-        .floating-icon {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--clay) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.25rem;
-        }
-
-        .floating-text strong {
-            display: block;
-            font-size: 0.95rem;
-            color: var(--earth);
-        }
-
-        .floating-text span {
-            font-size: 0.8rem;
-            color: var(--wood);
-            opacity: 0.7;
-        }
-
-        /* Philosophy */
-        .philosophy {
-            padding: 8rem 10%;
+        /* What's Inside */
+        .whats-inside {
+            padding: 8rem 8%;
             background: var(--earth);
             color: var(--cream);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .philosophy::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&q=80') center/cover;
-            opacity: 0.08;
-        }
-
-        .philosophy-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .philosophy-symbol {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            opacity: 0.6;
-        }
-
-        .philosophy h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .philosophy h2 em {
-            font-style: italic;
-            color: var(--clay);
-        }
-
-        .philosophy p {
-            font-size: 1.2rem;
-            line-height: 1.9;
-            opacity: 0.85;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Rituals Section */
-        .rituals {
-            padding: 8rem 8%;
-            background: var(--parchment);
         }
 
         .section-header {
@@ -379,7 +240,7 @@
         }
 
         .section-label {
-            color: var(--terracotta);
+            color: var(--clay);
             font-weight: 600;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -390,67 +251,153 @@
 
         .section-header h2 {
             font-size: clamp(2.25rem, 4vw, 3.25rem);
-            color: var(--earth);
             margin-bottom: 1rem;
         }
 
         .section-header p {
-            color: var(--wood);
+            opacity: 0.75;
             font-size: 1.1rem;
-            opacity: 0.8;
+        }
+
+        .inside-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .inside-image {
+            position: relative;
+        }
+
+        .inside-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .inside-features {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .inside-feature {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .inside-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(200, 139, 89, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .inside-feature h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+            color: var(--sand);
+        }
+
+        .inside-feature p {
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* The Rituals */
+        .rituals {
+            padding: 8rem 8%;
+            background: var(--parchment);
         }
 
         .rituals-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-            max-width: 1300px;
+            gap: 2rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .ritual-card {
             background: var(--cream);
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
             transition: all 0.4s ease;
-            cursor: pointer;
+            border: 1px solid rgba(61, 41, 20, 0.08);
         }
 
         .ritual-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 30px 60px rgba(61, 41, 20, 0.12);
+            box-shadow: 0 30px 60px rgba(61, 41, 20, 0.15);
         }
 
-        .ritual-image {
-            height: 280px;
-            background-size: cover;
-            background-position: center;
+        .ritual-cover {
+            height: 320px;
+            background: linear-gradient(135deg, var(--wood) 0%, var(--earth) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
+            overflow: hidden;
         }
 
-        .ritual-image::after {
+        .ritual-cover::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: linear-gradient(to top, rgba(61, 41, 20, 0.4) 0%, transparent 100%);
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23C68B59' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Ccircle cx='50' cy='50' r='30' stroke='%23C68B59' stroke-width='0.5' fill='none' opacity='0.2'/%3E%3Ccircle cx='50' cy='50' r='20' stroke='%23C68B59' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 150px 150px;
+            background-position: center;
         }
 
-        .ritual-tag {
-            position: absolute;
-            top: 1.25rem;
-            left: 1.25rem;
+        .ritual-book {
+            width: 140px;
+            height: 200px;
             background: var(--cream);
-            color: var(--earth);
-            padding: 0.4rem 0.9rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            border-radius: 4px 12px 12px 4px;
+            box-shadow: -5px 5px 20px rgba(0,0,0,0.3), inset -3px 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
             z-index: 2;
+        }
+
+        .ritual-book::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10%;
+            bottom: 10%;
+            width: 4px;
+            background: linear-gradient(180deg, var(--terracotta) 0%, var(--clay) 100%);
+            border-radius: 2px;
+        }
+
+        .ritual-book-symbol {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--terracotta);
+        }
+
+        .ritual-book-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            text-align: center;
+            color: var(--earth);
+            font-weight: 600;
+            line-height: 1.3;
         }
 
         .ritual-content {
@@ -458,19 +405,19 @@
         }
 
         .ritual-content h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--earth);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .ritual-content p {
             color: var(--wood);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             opacity: 0.8;
             margin-bottom: 1.5rem;
         }
 
-        .ritual-meta {
+        .ritual-details {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -478,163 +425,190 @@
             border-top: 1px solid rgba(61, 41, 20, 0.1);
         }
 
-        .ritual-pages {
-            font-size: 0.85rem;
+        .ritual-specs {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
             color: var(--sage);
-            font-weight: 500;
+        }
+
+        .ritual-specs span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
 
         .ritual-price {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.35rem;
+            font-size: 1.5rem;
             font-weight: 600;
             color: var(--terracotta);
         }
 
-        /* How It Works */
-        .how-it-works {
+        /* Page Samples */
+        .samples {
             padding: 8rem 8%;
             background: var(--cream);
         }
 
-        .how-grid {
+        .samples-showcase {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
+            gap: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .how-step {
-            text-align: center;
+        .sample-page {
+            aspect-ratio: 3/4;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(61, 41, 20, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(61, 41, 20, 0.08);
+        }
+
+        .sample-page:hover {
+            transform: translateY(-5px) rotate(-1deg);
+            box-shadow: 0 20px 40px rgba(61, 41, 20, 0.15);
+        }
+
+        .sample-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--terracotta);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .sample-lines {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .sample-line {
+            height: 1px;
+            background: rgba(61, 41, 20, 0.15);
+            border-radius: 1px;
+        }
+
+        .sample-line:nth-child(odd) {
+            width: 100%;
+        }
+
+        .sample-line:nth-child(even) {
+            width: 85%;
+        }
+
+        .sample-prompt {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(61, 41, 20, 0.2);
+            font-size: 0.75rem;
+            color: var(--sage);
+            font-style: italic;
+        }
+
+        /* Materials */
+        .materials {
+            padding: 8rem 8%;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--clay) 100%);
+        }
+
+        .materials-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .materials-text h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--earth);
+            margin-bottom: 1.5rem;
+        }
+
+        .materials-text p {
+            color: var(--wood);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+        }
+
+        .materials-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .material-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1rem;
+            color: var(--earth);
+        }
+
+        .material-item span {
+            font-size: 1.25rem;
+        }
+
+        .materials-image {
             position: relative;
         }
 
-        .how-step::after {
-            content: '→';
-            position: absolute;
-            right: -1.5rem;
-            top: 2.5rem;
-            font-size: 1.5rem;
-            color: var(--clay);
-            opacity: 0.5;
+        .materials-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(61, 41, 20, 0.2);
         }
 
-        .how-step:last-child::after {
-            display: none;
-        }
-
-        .how-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--sand) 0%, var(--clay) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
-        }
-
-        .how-step h4 {
-            font-size: 1.25rem;
-            color: var(--earth);
-            margin-bottom: 0.5rem;
-        }
-
-        .how-step p {
-            font-size: 0.9rem;
-            color: var(--wood);
-            opacity: 0.75;
-        }
-
-        /* Testimonial */
-        .testimonial {
-            padding: 8rem 10%;
-            background: linear-gradient(135deg, var(--sage) 0%, var(--forest) 100%);
-            color: white;
+        /* CTA */
+        .cta-section {
+            padding: 8rem 8%;
+            background: var(--earth);
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .testimonial::before {
+        .cta-section::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=1600&q=80') center/cover;
-            opacity: 0.15;
-        }
-
-        .testimonial-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .testimonial-quote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-style: italic;
-            font-weight: 400;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .testimonial-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(255,255,255,0.3);
-        }
-
-        .testimonial-info strong {
-            display: block;
-            font-size: 1rem;
-        }
-
-        .testimonial-info span {
-            font-size: 0.85rem;
-            opacity: 0.7;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 8rem 8%;
-            background: var(--parchment);
-            text-align: center;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23C68B59' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
         }
 
         .cta-content {
+            position: relative;
+            z-index: 2;
             max-width: 700px;
             margin: 0 auto;
+            color: var(--cream);
         }
 
         .cta-content h2 {
             font-size: clamp(2.5rem, 4vw, 3.5rem);
-            color: var(--earth);
             margin-bottom: 1.5rem;
         }
 
         .cta-content h2 em {
             font-style: italic;
-            color: var(--terracotta);
+            color: var(--clay);
         }
 
         .cta-content p {
-            color: var(--wood);
+            opacity: 0.75;
             font-size: 1.15rem;
             margin-bottom: 2.5rem;
-            opacity: 0.8;
         }
 
         .cta-buttons {
@@ -644,111 +618,42 @@
             flex-wrap: wrap;
         }
 
-        /* Newsletter */
-        .newsletter {
-            padding: 5rem 8%;
-            background: var(--earth);
-        }
-
-        .newsletter-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            color: var(--cream);
-        }
-
-        .newsletter h3 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .newsletter p {
-            opacity: 0.75;
-            margin-bottom: 2rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 0.75rem;
-            max-width: 450px;
-            margin: 0 auto;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 1rem 1.25rem;
-            border: none;
+        .btn-gold {
+            background: var(--clay);
+            color: var(--earth);
+            padding: 1.1rem 2.25rem;
             border-radius: 100px;
-            font-family: 'Karla', sans-serif;
-            font-size: 1rem;
-            background: rgba(255,255,255,0.1);
-            color: var(--cream);
-            outline: none;
-        }
-
-        .newsletter-form input::placeholder {
-            color: rgba(255,255,255,0.5);
-        }
-
-        .newsletter-form button {
-            background: var(--terracotta);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 100px;
-            font-family: 'Karla', sans-serif;
-            font-size: 1rem;
+            text-decoration: none;
             font-weight: 600;
-            cursor: pointer;
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
 
-        .newsletter-form button:hover {
-            background: var(--clay);
+        .btn-gold:hover {
+            background: var(--sand);
+            transform: translateY(-2px);
         }
 
         /* Footer */
         footer {
             background: var(--ink);
-            padding: 4rem 8% 2rem;
+            padding: 3rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             color: var(--sand);
         }
 
-        .footer-top {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-brand h4 {
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
-            color: var(--cream);
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand p {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            max-width: 280px;
-        }
-
-        .footer-links h5 {
-            font-family: 'Karla', sans-serif;
-            font-size: 0.85rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
             color: var(--cream);
-            margin-bottom: 1rem;
         }
 
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
+        .footer-links {
+            display: flex;
+            gap: 2rem;
         }
 
         .footer-links a {
@@ -763,117 +668,65 @@
             opacity: 1;
         }
 
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            opacity: 0.6;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--cream);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-social a:hover {
-            background: var(--terracotta);
-        }
-
         /* Responsive */
         @media (max-width: 1024px) {
-            .hero {
+            .inside-grid,
+            .materials-content {
                 grid-template-columns: 1fr;
-                min-height: auto;
-            }
-
-            .hero-content {
-                padding: 3rem 5%;
-                text-align: center;
-            }
-
-            .hero-badge {
-                margin: 0 auto 2rem;
-            }
-
-            .hero-desc {
-                margin: 0 auto 2.5rem;
-            }
-
-            .hero-cta {
-                justify-content: center;
-            }
-
-            .hero-visual {
-                padding: 2rem 5% 4rem;
+                gap: 3rem;
             }
 
             .rituals-grid {
                 grid-template-columns: 1fr;
-                max-width: 450px;
+                max-width: 400px;
             }
 
-            .how-grid {
+            .samples-showcase {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .how-step::after {
-                display: none;
-            }
-
-            .footer-top {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .nav-links {
-                display: none;
+            .hero-product img {
+                width: 150px;
+                height: 210px;
             }
         }
 
         @media (max-width: 640px) {
-            .philosophy,
+            .hero,
+            .whats-inside,
             .rituals,
-            .how-it-works,
-            .testimonial,
+            .samples,
+            .materials,
             .cta-section {
                 padding: 5rem 5%;
             }
 
-            .how-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .footer-top {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-brand p {
-                max-width: 100%;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
+            .hero-products {
                 gap: 1rem;
+            }
+
+            .hero-product img {
+                width: 100px;
+                height: 140px;
+            }
+
+            .hero-product:nth-child(1),
+            .hero-product:nth-child(3) {
+                transform: none;
+            }
+
+            .hero-product:nth-child(2) {
+                transform: translateY(-10px);
+            }
+
+            .samples-showcase {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1.5rem;
                 text-align: center;
             }
         }
@@ -882,106 +735,144 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <a href="#" class="logo">ZenSlate<span>®</span></a>
-        <ul class="nav-links">
-            <li><a href="#rituals">Rituals</a></li>
-            <li><a href="#philosophy">Philosophy</a></li>
-            <li><a href="#about">About</a></li>
-        </ul>
-        <a href="#shop" class="nav-cta">Shop Journals</a>
+        <a href="#" class="logo">ZenSlate</a>
+        <a href="#rituals" class="nav-cta">Shop Journals</a>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero texture">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span>☽</span>
-                Handcrafted Ritual Journals
+    <!-- Hero - Product Focused -->
+    <section class="hero">
+        <div class="hero-badge">
+            ☽ Ritual Journals
+        </div>
+        <h1>Journals Designed for <em>Inner Work</em></h1>
+        <p class="hero-desc">Each ZenSlate is a guided ritual — 40+ pages of exercises, prompts, and practices to help you heal, grow, and transform.</p>
+        
+        <div class="hero-products">
+            <div class="hero-product">
+                <img src="https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=400&q=80" alt="ZenSlate Journal">
             </div>
-            <h1>Transform Your Mind, <em>One Page at a Time</em></h1>
-            <p class="hero-desc">Guided journals designed as sacred rituals — each one a journey toward clarity, peace, and renewal. Write your way back to yourself.</p>
-            <div class="hero-cta">
-                <a href="#shop" class="btn-primary">
-                    Explore Rituals
-                    <span>→</span>
-                </a>
-                <a href="#philosophy" class="btn-secondary">Our Philosophy</a>
+            <div class="hero-product">
+                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" alt="ZenSlate Journal Open">
+            </div>
+            <div class="hero-product">
+                <img src="https://images.unsplash.com/photo-1518893063132-36e46dbe2428?w=400&q=80" alt="ZenSlate Collection">
             </div>
         </div>
-        <div class="hero-visual">
-            <div class="hero-image-container">
-                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80" alt="ZenSlate Journal" class="hero-main-image">
-                <img src="https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?w=400&q=80" alt="Writing ritual" class="hero-accent-image">
-                <div class="hero-floating top">
-                    <div class="floating-icon">✦</div>
-                    <div class="floating-text">
-                        <strong>40+ Pages</strong>
-                        <span>Guided exercises</span>
+
+        <div class="hero-cta">
+            <a href="#rituals" class="btn-primary">
+                Explore Rituals
+                <span>→</span>
+            </a>
+            <a href="#inside" class="btn-secondary">See Inside</a>
+        </div>
+    </section>
+
+    <!-- What's Inside -->
+    <section class="whats-inside" id="inside">
+        <div class="section-header">
+            <span class="section-label">What's Inside</span>
+            <h2>More Than Just a Journal</h2>
+            <p>Each ritual is carefully structured to guide you through a complete transformation journey.</p>
+        </div>
+        <div class="inside-grid">
+            <div class="inside-image">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&q=80" alt="Journal pages">
+            </div>
+            <div class="inside-features">
+                <div class="inside-feature">
+                    <div class="inside-icon">📖</div>
+                    <div>
+                        <h4>Introduction & Guidance</h4>
+                        <p>Every ritual begins with context — why this work matters and how to approach it.</p>
                     </div>
                 </div>
-                <div class="hero-floating bottom">
-                    <div class="floating-icon">☽</div>
-                    <div class="floating-text">
-                        <strong>Daily Rituals</strong>
-                        <span>Build lasting habits</span>
+                <div class="inside-feature">
+                    <div class="inside-icon">✍️</div>
+                    <div>
+                        <h4>Daily Exercises</h4>
+                        <p>Structured prompts and practices designed by therapists and mindfulness experts.</p>
+                    </div>
+                </div>
+                <div class="inside-feature">
+                    <div class="inside-icon">◇</div>
+                    <div>
+                        <h4>Reflection Pages</h4>
+                        <p>Weekly check-ins to track your progress and deepen your insights.</p>
+                    </div>
+                </div>
+                <div class="inside-feature">
+                    <div class="inside-icon">☽</div>
+                    <div>
+                        <h4>Closing Ceremony</h4>
+                        <p>Integration practices to seal your transformation and carry it forward.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Philosophy -->
-    <section class="philosophy texture" id="philosophy">
-        <div class="philosophy-content">
-            <div class="philosophy-symbol">◇</div>
-            <h2>Writing is not just words on paper — it is a <em>ritual of becoming</em></h2>
-            <p>Each ZenSlate journal is crafted as a sacred container for your inner work. We believe that the simple act of putting pen to paper can unlock profound transformation. Our journals guide you through evidence-based exercises wrapped in the warmth of ancient wisdom.</p>
-        </div>
-    </section>
-
-    <!-- Rituals -->
+    <!-- The Rituals -->
     <section class="rituals" id="rituals">
         <div class="section-header">
             <span class="section-label">The Collection</span>
             <h2>Choose Your Ritual</h2>
-            <p>Each journal addresses a different aspect of inner work. Start wherever you feel called.</p>
+            <p>Each journal addresses a different aspect of inner work.</p>
         </div>
         <div class="rituals-grid">
             <div class="ritual-card">
-                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80')">
-                    <span class="ritual-tag">Bestseller</span>
+                <div class="ritual-cover">
+                    <div class="ritual-book">
+                        <div class="ritual-book-symbol">☽</div>
+                        <div class="ritual-book-title">The Ritual of Renewal</div>
+                    </div>
                 </div>
                 <div class="ritual-content">
-                    <h3>The Ritual of Renewal</h3>
-                    <p>Release what no longer serves you. A 30-day journey through letting go, forgiveness, and fresh beginnings.</p>
-                    <div class="ritual-meta">
-                        <span class="ritual-pages">40 pages · 30 days</span>
+                    <h3>Renewal</h3>
+                    <p>Release what no longer serves you. A journey through letting go, forgiveness, and fresh beginnings.</p>
+                    <div class="ritual-details">
+                        <div class="ritual-specs">
+                            <span>📄 40 pages</span>
+                            <span>◷ 30 days</span>
+                        </div>
                         <span class="ritual-price">€29</span>
                     </div>
                 </div>
             </div>
             <div class="ritual-card">
-                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&q=80')">
-                    <span class="ritual-tag">Inner Peace</span>
+                <div class="ritual-cover" style="background: linear-gradient(135deg, var(--sage) 0%, var(--forest) 100%);">
+                    <div class="ritual-book">
+                        <div class="ritual-book-symbol">◇</div>
+                        <div class="ritual-book-title">The Ritual of Stillness</div>
+                    </div>
                 </div>
                 <div class="ritual-content">
-                    <h3>The Ritual of Stillness</h3>
-                    <p>Quiet the noise within. Guided practices for anxiety relief, presence, and finding calm in chaos.</p>
-                    <div class="ritual-meta">
-                        <span class="ritual-pages">48 pages · 21 days</span>
+                    <h3>Stillness</h3>
+                    <p>Quiet the noise within. Practices for anxiety relief, presence, and finding calm in chaos.</p>
+                    <div class="ritual-details">
+                        <div class="ritual-specs">
+                            <span>📄 48 pages</span>
+                            <span>◷ 21 days</span>
+                        </div>
                         <span class="ritual-price">€29</span>
                     </div>
                 </div>
             </div>
             <div class="ritual-card">
-                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1490730141103-6cac27abb37f?w=600&q=80')">
-                    <span class="ritual-tag">Self-Discovery</span>
+                <div class="ritual-cover" style="background: linear-gradient(135deg, var(--terracotta) 0%, var(--wood) 100%);">
+                    <div class="ritual-book">
+                        <div class="ritual-book-symbol">✦</div>
+                        <div class="ritual-book-title">The Ritual of Knowing</div>
+                    </div>
                 </div>
                 <div class="ritual-content">
-                    <h3>The Ritual of Knowing</h3>
-                    <p>Who are you, really? Deep reflection prompts to uncover your values, desires, and authentic self.</p>
-                    <div class="ritual-meta">
-                        <span class="ritual-pages">52 pages · 40 days</span>
+                    <h3>Knowing</h3>
+                    <p>Who are you, really? Deep prompts to uncover your values, desires, and authentic self.</p>
+                    <div class="ritual-details">
+                        <div class="ritual-specs">
+                            <span>📄 52 pages</span>
+                            <span>◷ 40 days</span>
+                        </div>
                         <span class="ritual-price">€32</span>
                     </div>
                 </div>
@@ -989,116 +880,115 @@
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works">
+    <!-- Page Samples -->
+    <section class="samples">
         <div class="section-header">
-            <span class="section-label">The Journey</span>
-            <h2>How Each Ritual Works</h2>
+            <span class="section-label">Inside Pages</span>
+            <h2>A Glimpse of the Journey</h2>
         </div>
-        <div class="how-grid">
-            <div class="how-step">
-                <div class="how-icon">📖</div>
-                <h4>Begin</h4>
-                <p>Start with the introduction that explains the ritual's purpose and what to expect</p>
+        <div class="samples-showcase">
+            <div class="sample-page">
+                <div class="sample-header">Day One</div>
+                <div class="sample-lines">
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                </div>
+                <div class="sample-prompt">"What am I ready to release?"</div>
             </div>
-            <div class="how-step">
-                <div class="how-icon">✍️</div>
-                <h4>Practice</h4>
-                <p>Follow daily exercises designed by therapists and mindfulness experts</p>
+            <div class="sample-page">
+                <div class="sample-header">Reflection</div>
+                <div class="sample-lines">
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                </div>
+                <div class="sample-prompt">"What patterns do I notice?"</div>
             </div>
-            <div class="how-step">
-                <div class="how-icon">🌱</div>
-                <h4>Reflect</h4>
-                <p>Weekly check-ins help you see your growth and deepen your insights</p>
+            <div class="sample-page">
+                <div class="sample-header">Gratitude</div>
+                <div class="sample-lines">
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                </div>
+                <div class="sample-prompt">"Three things I'm thankful for..."</div>
             </div>
-            <div class="how-step">
-                <div class="how-icon">✦</div>
-                <h4>Transform</h4>
-                <p>Complete the ritual with closing ceremonies and integration practices</p>
+            <div class="sample-page">
+                <div class="sample-header">Integration</div>
+                <div class="sample-lines">
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                    <div class="sample-line"></div>
+                </div>
+                <div class="sample-prompt">"How will I carry this forward?"</div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonial -->
-    <section class="testimonial texture">
-        <div class="testimonial-content">
-            <p class="testimonial-quote">"I've tried many journals, but ZenSlate is different. It feels like a warm guide holding your hand through the darkness. The Renewal ritual helped me finally process grief I'd carried for years."</p>
-            <div class="testimonial-author">
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=80" alt="Maria" class="testimonial-avatar">
-                <div class="testimonial-info">
-                    <strong>Maria S.</strong>
-                    <span>Completed 3 rituals</span>
+    <!-- Materials -->
+    <section class="materials">
+        <div class="materials-content">
+            <div class="materials-text">
+                <h2>Crafted with Intention</h2>
+                <p>Every detail matters. From the weight of the paper to the binding that lies flat — these journals are made to be used, not just admired.</p>
+                <div class="materials-list">
+                    <div class="material-item">
+                        <span>📜</span>
+                        120gsm cream paper — easy on the eyes
+                    </div>
+                    <div class="material-item">
+                        <span>📖</span>
+                        Lay-flat binding — write comfortably
+                    </div>
+                    <div class="material-item">
+                        <span>🌿</span>
+                        FSC-certified sustainable materials
+                    </div>
+                    <div class="material-item">
+                        <span>✨</span>
+                        Soft-touch matte cover
+                    </div>
                 </div>
+            </div>
+            <div class="materials-image">
+                <img src="https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?w=600&q=80" alt="Journal detail">
             </div>
         </div>
     </section>
 
     <!-- CTA -->
-    <section class="cta-section" id="shop">
+    <section class="cta-section">
         <div class="cta-content">
-            <h2>Ready to Begin Your <em>Ritual</em>?</h2>
-            <p>Every journey starts with a single page. Choose the ritual that calls to you and take the first step toward transformation.</p>
+            <h2>Begin Your <em>Ritual</em></h2>
+            <p>Every transformation starts with a single page. Choose the journal that calls to you.</p>
             <div class="cta-buttons">
-                <a href="#rituals" class="btn-primary">
-                    Explore All Rituals
-                    <span>→</span>
-                </a>
-                <a href="#" class="btn-secondary">Gift a Ritual</a>
+                <a href="#rituals" class="btn-gold">Shop All Rituals</a>
+                <a href="#" class="btn-secondary" style="border-color: rgba(255,255,255,0.3); color: var(--cream);">Gift a Ritual</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="newsletter-content">
-            <h3>Join the Inner Circle</h3>
-            <p>Receive monthly wisdom, early access to new rituals, and exclusive content for your journey.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Your email address">
-                <button type="submit">Subscribe</button>
-            </form>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-top">
-            <div class="footer-brand">
-                <h4>ZenSlate</h4>
-                <p>Handcrafted ritual journals for the modern seeker. Transform your inner world, one page at a time.</p>
-            </div>
-            <div class="footer-links">
-                <h5>Shop</h5>
-                <ul>
-                    <li><a href="#">All Rituals</a></li>
-                    <li><a href="#">Bundles</a></li>
-                    <li><a href="#">Gift Cards</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h5>About</h5>
-                <ul>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Philosophy</a></li>
-                    <li><a href="#">Press</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h5>Support</h5>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Shipping</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span>© 2026 ZenSlate. All rights reserved.</span>
-            <div class="footer-social">
-                <a href="#">𝕏</a>
-                <a href="#">IG</a>
-                <a href="#">PI</a>
-            </div>
+        <div class="footer-logo">ZenSlate</div>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Shipping</a>
+            <a href="#">Contact</a>
+            <a href="#">Instagram</a>
         </div>
     </footer>
 </body>
