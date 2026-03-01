@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZenSlate — Ritual Journals for Inner Peace</title>
+    <title>ZenSlate — Ritual Journals</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,40 +15,22 @@
         }
 
         :root {
-            /* Deep warm browns */
-            --chocolate: #3D2E22;
-            --coffee: #4A3728;
-            --mocha: #5C4636;
-            --wood: #6B5344;
-            
-            /* Golden amber tones */
+            --chocolate: #2A1F17;
+            --coffee: #3D2E22;
+            --mocha: #4A3728;
             --gold: #D4A24C;
             --amber: #E8B75A;
             --honey: #C99A45;
-            --brass: #B8923A;
-            
-            /* Warm neutrals */
             --cream: #F5EBE0;
-            --sand: #E8DCC8;
-            --beige: #D9CBBA;
-            --linen: #EDE4D8;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --sand: #D9CBBA;
         }
 
         body {
-            font-family: 'Karla', sans-serif;
+            font-family: 'Cormorant Garamond', serif;
             background: var(--chocolate);
             color: var(--cream);
-            line-height: 1.7;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 500;
-            line-height: 1.2;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -58,37 +40,33 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1.5rem 6%;
+            padding: 2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(180deg, rgba(61, 46, 34, 0.95) 0%, transparent 100%);
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.75rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 400;
             color: var(--gold);
             text-decoration: none;
-            letter-spacing: 0.05em;
-        }
-
-        .nav-cta {
-            background: var(--gold);
-            color: var(--chocolate);
-            padding: 0.75rem 1.75rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
         }
 
-        .nav-cta:hover {
-            background: var(--amber);
+        .nav-link {
+            color: var(--sand);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
         }
 
         /* Hero */
@@ -96,73 +74,50 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, var(--chocolate) 0%, var(--coffee) 50%, #2A1F17 100%);
         }
 
-        /* Golden glow effect */
-        .hero::before {
-            content: '';
+        .hero-glow {
             position: absolute;
-            top: -30%;
-            right: -20%;
-            width: 80%;
-            height: 120%;
-            background: radial-gradient(ellipse, rgba(212, 162, 76, 0.25) 0%, rgba(212, 162, 76, 0.1) 40%, transparent 70%);
-            pointer-events: none;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: radial-gradient(ellipse at 50% 50%, 
+                rgba(212, 162, 76, 0.15) 0%, 
+                rgba(212, 162, 76, 0.05) 30%, 
+                transparent 60%);
+            animation: breathe 8s ease-in-out infinite;
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            left: -10%;
-            width: 60%;
-            height: 80%;
-            background: radial-gradient(ellipse, rgba(232, 183, 90, 0.15) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .hero-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 8rem 6%;
-            align-items: center;
-            position: relative;
-            z-index: 2;
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
         }
 
         .hero-content {
-            padding-right: 2rem;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 5%;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+        .hero-symbol {
+            font-size: 4rem;
             color: var(--gold);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .hero-badge::before,
-        .hero-badge::after {
-            content: '—';
-            opacity: 0.5;
+            margin-bottom: 3rem;
+            opacity: 0.8;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 5vw, 4.5rem);
-            color: var(--cream);
-            margin-bottom: 1.5rem;
-            font-weight: 400;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            line-height: 1.3;
         }
 
         .hero h1 em {
@@ -170,161 +125,302 @@
             color: var(--gold);
         }
 
-        .hero-desc {
-            font-size: 1.15rem;
-            color: var(--beige);
-            max-width: 480px;
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
+        .hero-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 2rem auto;
+            opacity: 0.5;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--sand);
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+            line-height: 1.9;
         }
 
         .hero-cta {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-gold {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--honey) 100%);
-            color: var(--chocolate);
-            padding: 1.15rem 2.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(212, 162, 76, 0.3);
-        }
-
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(212, 162, 76, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
+            display: inline-block;
             color: var(--gold);
-            padding: 1.15rem 2.5rem;
-            border-radius: 4px;
             text-decoration: none;
-            font-weight: 500;
             font-size: 0.9rem;
-            border: 1px solid var(--gold);
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--gold);
+            transition: all 0.4s ease;
         }
 
-        .btn-outline:hover {
-            background: rgba(212, 162, 76, 0.1);
+        .hero-cta:hover {
+            background: var(--gold);
+            color: var(--chocolate);
         }
 
-        /* Hero Visual */
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-image-main {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 8px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-floating {
+        .scroll-indicator {
             position: absolute;
-            background: rgba(61, 46, 34, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            border: 1px solid rgba(212, 162, 76, 0.2);
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--gold);
+            opacity: 0.4;
+            font-size: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Rituals Section */
+        .rituals {
+            padding: 10rem 5%;
+            position: relative;
+        }
+
+        .rituals-header {
+            text-align: center;
+            margin-bottom: 8rem;
+        }
+
+        .rituals-header span {
+            display: block;
+            color: var(--gold);
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .rituals-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        /* Individual Ritual Cards - Each with unique aura */
+        .ritual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+            max-width: 1200px;
+            margin: 0 auto 12rem;
+            align-items: center;
+        }
+
+        .ritual:nth-child(even) {
+            direction: rtl;
+        }
+
+        .ritual:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .ritual-visual {
+            position: relative;
+            aspect-ratio: 1;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            justify-content: center;
         }
 
-        .hero-floating.top-left {
-            top: 10%;
-            left: -10%;
+        /* Ritual 1 - Renewal - Moon/Silver-Gold Aura */
+        .ritual-1 .ritual-aura {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, 
+                rgba(212, 162, 76, 0.2) 0%, 
+                rgba(212, 162, 76, 0.08) 40%, 
+                transparent 70%);
+            border-radius: 50%;
+            animation: pulse 6s ease-in-out infinite;
         }
 
-        .hero-floating.bottom-right {
-            bottom: 15%;
-            right: -5%;
+        /* Ritual 2 - Stillness - Deep Blue/Indigo Aura */
+        .ritual-2 .ritual-aura {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, 
+                rgba(147, 129, 179, 0.2) 0%, 
+                rgba(100, 90, 140, 0.08) 40%, 
+                transparent 70%);
+            border-radius: 50%;
+            animation: pulse 7s ease-in-out infinite;
         }
 
-        .floating-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--honey) 100%);
+        /* Ritual 3 - Knowing - Warm Amber/Fire Aura */
+        .ritual-3 .ritual-aura {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, 
+                rgba(200, 120, 60, 0.2) 0%, 
+                rgba(180, 100, 50, 0.08) 40%, 
+                transparent 70%);
+            border-radius: 50%;
+            animation: pulse 5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        .ritual-symbol {
+            position: relative;
+            z-index: 2;
+            width: 200px;
+            height: 200px;
+            border: 1px solid currentColor;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 4rem;
         }
 
-        .floating-text {
-            color: var(--cream);
-            font-size: 0.85rem;
-        }
-
-        .floating-text strong {
-            display: block;
+        .ritual-1 .ritual-symbol {
             color: var(--gold);
-            font-weight: 600;
+            box-shadow: 0 0 60px rgba(212, 162, 76, 0.2);
+        }
+
+        .ritual-2 .ritual-symbol {
+            color: #9381B3;
+            box-shadow: 0 0 60px rgba(147, 129, 179, 0.2);
+        }
+
+        .ritual-3 .ritual-symbol {
+            color: #C8783C;
+            box-shadow: 0 0 60px rgba(200, 120, 60, 0.2);
+        }
+
+        .ritual-content h3 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .ritual-1 .ritual-content h3 { color: var(--gold); }
+        .ritual-2 .ritual-content h3 { color: #9381B3; }
+        .ritual-3 .ritual-content h3 { color: #C8783C; }
+
+        .ritual-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--sand);
+            opacity: 0.6;
+            margin-bottom: 2rem;
+        }
+
+        .ritual-content p {
+            font-size: 1.15rem;
+            color: var(--sand);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .ritual-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--sand);
+            opacity: 0.6;
+        }
+
+        .ritual-price {
+            font-size: 2rem;
+            font-weight: 400;
+        }
+
+        .ritual-1 .ritual-price { color: var(--gold); }
+        .ritual-2 .ritual-price { color: #9381B3; }
+        .ritual-3 .ritual-price { color: #C8783C; }
+
+        .ritual-cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        .ritual-1 .ritual-cta {
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+        .ritual-1 .ritual-cta:hover {
+            background: var(--gold);
+            color: var(--chocolate);
+        }
+
+        .ritual-2 .ritual-cta {
+            color: #9381B3;
+            border: 1px solid #9381B3;
+        }
+        .ritual-2 .ritual-cta:hover {
+            background: #9381B3;
+            color: var(--chocolate);
+        }
+
+        .ritual-3 .ritual-cta {
+            color: #C8783C;
+            border: 1px solid #C8783C;
+        }
+        .ritual-3 .ritual-cta:hover {
+            background: #C8783C;
+            color: var(--chocolate);
         }
 
         /* Philosophy */
         .philosophy {
-            padding: 8rem 6%;
-            background: var(--coffee);
+            padding: 10rem 5%;
+            text-align: center;
             position: relative;
-            overflow: hidden;
+            background: linear-gradient(180deg, var(--chocolate) 0%, var(--coffee) 50%, var(--chocolate) 100%);
         }
 
         .philosophy::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at center, rgba(212, 162, 76, 0.08) 0%, transparent 60%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 162, 76, 0.08) 0%, transparent 60%);
+            pointer-events: none;
         }
 
         .philosophy-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
             position: relative;
             z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .philosophy-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 2rem;
-            border: 1px solid var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+        .philosophy-symbol {
+            font-size: 3rem;
             color: var(--gold);
+            margin-bottom: 3rem;
+            opacity: 0.6;
         }
 
         .philosophy h2 {
-            font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-            color: var(--cream);
-            margin-bottom: 1.5rem;
-            font-weight: 400;
-            line-height: 1.5;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 2rem;
         }
 
         .philosophy h2 em {
@@ -334,511 +430,180 @@
 
         .philosophy p {
             font-size: 1.1rem;
-            color: var(--beige);
-            line-height: 1.9;
-            opacity: 0.85;
-        }
-
-        /* Rituals */
-        .rituals {
-            padding: 8rem 6%;
-            background: var(--chocolate);
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 4rem;
-        }
-
-        .section-label {
-            color: var(--gold);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--cream);
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: var(--beige);
-            font-size: 1.05rem;
+            color: var(--sand);
+            line-height: 2;
+            font-weight: 300;
             opacity: 0.8;
-        }
-
-        .rituals-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .ritual-card {
-            background: var(--coffee);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(212, 162, 76, 0.1);
-        }
-
-        .ritual-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(212, 162, 76, 0.3);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .ritual-image {
-            height: 240px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .ritual-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 30%, var(--coffee) 100%);
-        }
-
-        .ritual-badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: var(--gold);
-            color: var(--chocolate);
-            padding: 0.4rem 0.8rem;
-            border-radius: 2px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            z-index: 2;
-        }
-
-        .ritual-content {
-            padding: 1.5rem;
-        }
-
-        .ritual-content h3 {
-            font-size: 1.4rem;
-            color: var(--gold);
-            margin-bottom: 0.75rem;
-        }
-
-        .ritual-content p {
-            color: var(--beige);
-            font-size: 0.9rem;
-            margin-bottom: 1.25rem;
-            line-height: 1.6;
-            opacity: 0.85;
-        }
-
-        .ritual-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(212, 162, 76, 0.15);
-        }
-
-        .ritual-meta {
-            font-size: 0.8rem;
-            color: var(--beige);
-            opacity: 0.6;
-        }
-
-        .ritual-price {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--gold);
-        }
-
-        /* Features */
-        .features {
-            padding: 8rem 6%;
-            background: linear-gradient(180deg, var(--coffee) 0%, var(--chocolate) 100%);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: center;
-        }
-
-        .features-image {
-            position: relative;
-        }
-
-        .features-image img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .features-image::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 100px;
-            height: 100px;
-            border: 1px solid var(--gold);
-            border-radius: 8px;
-            opacity: 0.3;
-        }
-
-        .features-content h2 {
-            font-size: clamp(2rem, 3.5vw, 2.75rem);
-            color: var(--cream);
-            margin-bottom: 1.5rem;
-        }
-
-        .features-content > p {
-            color: var(--beige);
-            font-size: 1.05rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.85;
-            line-height: 1.8;
-        }
-
-        .feature-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .feature-item {
-            display: flex;
-            gap: 1.25rem;
-            align-items: flex-start;
-        }
-
-        .feature-icon {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--honey) 100%);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .feature-item h4 {
-            font-size: 1rem;
-            color: var(--gold);
-            margin-bottom: 0.25rem;
-            font-family: 'Karla', sans-serif;
-            font-weight: 600;
-        }
-
-        .feature-item p {
-            font-size: 0.85rem;
-            color: var(--beige);
-            opacity: 0.7;
-        }
-
-        /* CTA */
-        .cta {
-            padding: 6rem;
-            background: linear-gradient(135deg, var(--mocha) 0%, var(--coffee) 100%);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center, rgba(212, 162, 76, 0.12) 0%, transparent 60%);
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 2;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .cta h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--cream);
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            color: var(--beige);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.85;
         }
 
         /* Footer */
         footer {
-            background: #1A1310;
-            padding: 3rem 6%;
+            padding: 4rem 5%;
+            text-align: center;
             border-top: 1px solid rgba(212, 162, 76, 0.1);
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-brand {
+        .footer-logo {
+            font-size: 1.25rem;
+            letter-spacing: 0.3em;
             color: var(--gold);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .footer-links {
             display: flex;
-            gap: 2rem;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
         }
 
         .footer-links a {
-            color: var(--beige);
+            color: var(--sand);
             text-decoration: none;
             font-size: 0.85rem;
-            opacity: 0.6;
-            transition: all 0.3s ease;
+            letter-spacing: 0.1em;
+            opacity: 0.5;
+            transition: opacity 0.3s;
         }
 
         .footer-links a:hover {
             opacity: 1;
-            color: var(--gold);
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: var(--sand);
+            opacity: 0.3;
+            letter-spacing: 0.1em;
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-container {
+        @media (max-width: 900px) {
+            .ritual {
                 grid-template-columns: 1fr;
                 gap: 4rem;
                 text-align: center;
+                margin-bottom: 8rem;
             }
 
-            .hero-content {
-                padding-right: 0;
+            .ritual:nth-child(even) {
+                direction: ltr;
             }
 
-            .hero-desc {
-                margin-left: auto;
-                margin-right: auto;
+            .ritual-visual {
+                max-width: 300px;
+                margin: 0 auto;
             }
 
-            .hero-cta {
+            .ritual-meta {
                 justify-content: center;
-            }
-
-            .hero-floating {
-                display: none;
-            }
-
-            .rituals-grid {
-                grid-template-columns: 1fr;
-                max-width: 450px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .philosophy,
-            .rituals,
-            .features,
-            .cta {
-                padding: 5rem 5%;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 1.5rem;
-                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <a href="#" class="logo">ZenSlate</a>
-        <a href="#rituals" class="nav-cta">Shop Rituals</a>
+        <a href="#rituals" class="nav-link">Enter</a>
     </nav>
 
     <!-- Hero -->
     <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">Handcrafted Ritual Journals</div>
-                <h1>Write Your Way Back to <em>Yourself</em></h1>
-                <p class="hero-desc">Guided journals designed as sacred rituals. Each page a step toward healing, clarity, and inner peace. Handcrafted with intention.</p>
-                <div class="hero-cta">
-                    <a href="#rituals" class="btn-gold">Begin Your Ritual</a>
-                    <a href="#philosophy" class="btn-outline">Our Philosophy</a>
-                </div>
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-symbol">◇</div>
+            <h1>Journals for <em>Inner Work</em></h1>
+            <div class="hero-line"></div>
+            <p>Sacred rituals bound in paper. Each journal a guided journey toward healing, stillness, and self-knowing.</p>
+            <a href="#rituals" class="hero-cta">Explore the Rituals</a>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- Rituals -->
+    <section class="rituals" id="rituals">
+        <div class="rituals-header">
+            <span>The Collection</span>
+            <h2>Three Paths, One Journey</h2>
+        </div>
+
+        <!-- Ritual 1: Renewal -->
+        <div class="ritual ritual-1">
+            <div class="ritual-visual">
+                <div class="ritual-aura"></div>
+                <div class="ritual-symbol">☽</div>
             </div>
-            <div class="hero-visual">
-                <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&q=85" alt="ZenSlate Journal" class="hero-image-main">
-                <div class="hero-floating top-left">
-                    <div class="floating-icon">☽</div>
-                    <div class="floating-text">
-                        <strong>40+ Pages</strong>
-                        Guided exercises
-                    </div>
+            <div class="ritual-content">
+                <h3>Renewal</h3>
+                <div class="ritual-subtitle">The Ritual of Letting Go</div>
+                <p>Release what no longer serves you. A 30-day journey through forgiveness, acceptance, and the courage to begin again. Each page guides you deeper into freedom.</p>
+                <div class="ritual-meta">
+                    <span>40 pages</span>
+                    <span>30 days</span>
                 </div>
-                <div class="hero-floating bottom-right">
-                    <div class="floating-icon">✦</div>
-                    <div class="floating-text">
-                        <strong>30-Day Rituals</strong>
-                        Transform within
-                    </div>
+                <div class="ritual-price">€29</div>
+                <a href="#" class="ritual-cta">Begin This Ritual</a>
+            </div>
+        </div>
+
+        <!-- Ritual 2: Stillness -->
+        <div class="ritual ritual-2">
+            <div class="ritual-visual">
+                <div class="ritual-aura"></div>
+                <div class="ritual-symbol">◯</div>
+            </div>
+            <div class="ritual-content">
+                <h3>Stillness</h3>
+                <div class="ritual-subtitle">The Ritual of Presence</div>
+                <p>Quiet the noise within. Practices for anxiety relief, grounding, and finding the calm that exists beneath the chaos. Return to your center.</p>
+                <div class="ritual-meta">
+                    <span>48 pages</span>
+                    <span>21 days</span>
                 </div>
+                <div class="ritual-price">€29</div>
+                <a href="#" class="ritual-cta">Begin This Ritual</a>
+            </div>
+        </div>
+
+        <!-- Ritual 3: Knowing -->
+        <div class="ritual ritual-3">
+            <div class="ritual-visual">
+                <div class="ritual-aura"></div>
+                <div class="ritual-symbol">✦</div>
+            </div>
+            <div class="ritual-content">
+                <h3>Knowing</h3>
+                <div class="ritual-subtitle">The Ritual of Self-Discovery</div>
+                <p>Who are you beneath the masks? Deep reflection prompts to uncover your values, desires, and the truth you've been avoiding. Meet yourself.</p>
+                <div class="ritual-meta">
+                    <span>52 pages</span>
+                    <span>40 days</span>
+                </div>
+                <div class="ritual-price">€32</div>
+                <a href="#" class="ritual-cta">Begin This Ritual</a>
             </div>
         </div>
     </section>
 
     <!-- Philosophy -->
-    <section class="philosophy" id="philosophy">
+    <section class="philosophy">
         <div class="philosophy-content">
-            <div class="philosophy-icon">◇</div>
+            <div class="philosophy-symbol">◇</div>
             <h2>Writing is not journaling. It is a <em>ritual of becoming.</em></h2>
-            <p>Each ZenSlate is a sacred container for your inner work. We believe the simple act of putting pen to paper can unlock profound transformation — when guided with intention, wisdom, and care.</p>
-        </div>
-    </section>
-
-    <!-- Rituals -->
-    <section class="rituals" id="rituals">
-        <div class="section-header">
-            <span class="section-label">The Collection</span>
-            <h2>Choose Your Ritual</h2>
-            <p>Each journal guides you through a different aspect of inner work.</p>
-        </div>
-        <div class="rituals-grid">
-            <div class="ritual-card">
-                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1602528495711-53f65a79e9e5?w=600&q=80')">
-                    <span class="ritual-badge">Bestseller</span>
-                </div>
-                <div class="ritual-content">
-                    <h3>The Ritual of Renewal</h3>
-                    <p>Release what no longer serves you. A journey through letting go, forgiveness, and fresh beginnings.</p>
-                    <div class="ritual-footer">
-                        <span class="ritual-meta">40 pages · 30 days</span>
-                        <span class="ritual-price">€29</span>
-                    </div>
-                </div>
-            </div>
-            <div class="ritual-card">
-                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&q=80')">
-                    <span class="ritual-badge">Inner Peace</span>
-                </div>
-                <div class="ritual-content">
-                    <h3>The Ritual of Stillness</h3>
-                    <p>Quiet the noise within. Practices for anxiety relief, presence, and finding calm.</p>
-                    <div class="ritual-footer">
-                        <span class="ritual-meta">48 pages · 21 days</span>
-                        <span class="ritual-price">€29</span>
-                    </div>
-                </div>
-            </div>
-            <div class="ritual-card">
-                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1474418397713-7ede21d49118?w=600&q=80')">
-                    <span class="ritual-badge">Self-Discovery</span>
-                </div>
-                <div class="ritual-content">
-                    <h3>The Ritual of Knowing</h3>
-                    <p>Who are you, really? Deep prompts to uncover your values and authentic self.</p>
-                    <div class="ritual-footer">
-                        <span class="ritual-meta">52 pages · 40 days</span>
-                        <span class="ritual-price">€32</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features -->
-    <section class="features" id="inside">
-        <div class="features-grid">
-            <div class="features-image">
-                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=700&q=85" alt="Journal interior">
-            </div>
-            <div class="features-content">
-                <h2>More Than a Journal</h2>
-                <p>Each ritual is carefully structured to guide you through a complete transformation journey.</p>
-                <div class="feature-list">
-                    <div class="feature-item">
-                        <div class="feature-icon">📖</div>
-                        <div>
-                            <h4>Introduction & Guidance</h4>
-                            <p>Context and intention to begin your journey</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">✍️</div>
-                        <div>
-                            <h4>Daily Practices</h4>
-                            <p>Structured exercises designed by experts</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">◇</div>
-                        <div>
-                            <h4>Weekly Reflections</h4>
-                            <p>Check-ins to track progress and insights</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">☽</div>
-                        <div>
-                            <h4>Closing Ceremony</h4>
-                            <p>Integration practices to seal transformation</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta">
-        <div class="cta-content">
-            <h2>Begin Your Ritual</h2>
-            <p>Every transformation starts with a single page. Choose the journal that calls to you.</p>
-            <a href="#rituals" class="btn-gold">Shop All Rituals</a>
+            <p>Each ZenSlate is a sacred container for transformation. The simple act of pen meeting paper — when guided with intention — can unlock what words alone cannot reach.</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-brand">ZenSlate</div>
-            <div class="footer-links">
-                <a href="#">About</a>
-                <a href="#">Shipping</a>
-                <a href="#">Contact</a>
-                <a href="#">Instagram</a>
-            </div>
+        <div class="footer-logo">ZENSLATE</div>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Shipping</a>
+            <a href="#">Contact</a>
+            <a href="#">Instagram</a>
         </div>
+        <div class="footer-copy">© 2026 ZenSlate. Handcrafted with intention.</div>
     </footer>
 </body>
 </html>
