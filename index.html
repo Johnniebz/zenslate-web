@@ -15,18 +15,23 @@
         }
 
         :root {
-            --terracotta: #C2703E;
-            --terracotta-dark: #9E5A32;
-            --terracotta-light: #D4956A;
-            --amber: #E8A54B;
-            --gold: #D4A853;
-            --sand: #E8D4B8;
-            --cream: #FBF6F0;
-            --parchment: #F2E6D9;
-            --earth: #2C1810;
-            --wood: #4A3228;
-            --sage: #6B7D5E;
-            --forest: #3D4A35;
+            /* Deep warm browns */
+            --chocolate: #3D2E22;
+            --coffee: #4A3728;
+            --mocha: #5C4636;
+            --wood: #6B5344;
+            
+            /* Golden amber tones */
+            --gold: #D4A24C;
+            --amber: #E8B75A;
+            --honey: #C99A45;
+            --brass: #B8923A;
+            
+            /* Warm neutrals */
+            --cream: #F5EBE0;
+            --sand: #E8DCC8;
+            --beige: #D9CBBA;
+            --linen: #EDE4D8;
         }
 
         html {
@@ -35,8 +40,8 @@
 
         body {
             font-family: 'Karla', sans-serif;
-            background: var(--cream);
-            color: var(--earth);
+            background: var(--chocolate);
+            color: var(--cream);
             line-height: 1.7;
         }
 
@@ -46,7 +51,7 @@
             line-height: 1.2;
         }
 
-        /* Navigation - Transparent on hero */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -57,183 +62,228 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(44, 24, 16, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1rem 6%;
+            background: linear-gradient(180deg, rgba(61, 46, 34, 0.95) 0%, transparent 100%);
         }
 
         .logo {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.75rem;
             font-weight: 600;
-            color: var(--cream);
+            color: var(--gold);
             text-decoration: none;
             letter-spacing: 0.05em;
         }
 
         .nav-cta {
-            background: rgba(255,255,255,0.15);
-            color: var(--cream);
+            background: var(--gold);
+            color: var(--chocolate);
             padding: 0.75rem 1.75rem;
-            border-radius: 100px;
+            border-radius: 4px;
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
         }
 
         .nav-cta:hover {
-            background: var(--cream);
-            color: var(--earth);
-            border-color: var(--cream);
+            background: var(--amber);
         }
 
-        /* Hero - Full immersive */
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, var(--chocolate) 0%, var(--coffee) 50%, #2A1F17 100%);
         }
 
-        .hero-bg {
+        /* Golden glow effect */
+        .hero::before {
+            content: '';
             position: absolute;
-            inset: 0;
-            background: url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=1920&q=85') center/cover;
-            filter: brightness(0.35) saturate(1.1);
+            top: -30%;
+            right: -20%;
+            width: 80%;
+            height: 120%;
+            background: radial-gradient(ellipse, rgba(212, 162, 76, 0.25) 0%, rgba(212, 162, 76, 0.1) 40%, transparent 70%);
+            pointer-events: none;
         }
 
-        .hero-overlay {
+        .hero::after {
+            content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                180deg,
-                rgba(44, 24, 16, 0.3) 0%,
-                rgba(44, 24, 16, 0.5) 50%,
-                rgba(44, 24, 16, 0.8) 100%
-            );
+            bottom: -20%;
+            left: -10%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(ellipse, rgba(232, 183, 90, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 6%;
+            align-items: center;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: var(--cream);
-            max-width: 900px;
-            padding: 0 5%;
+            padding-right: 2rem;
         }
 
-        .hero-symbol {
-            font-size: 3rem;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
             margin-bottom: 2rem;
-            opacity: 0.7;
-            animation: float 4s ease-in-out infinite;
+            font-weight: 500;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .hero-badge::before,
+        .hero-badge::after {
+            content: '—';
+            opacity: 0.5;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 400;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            color: var(--cream);
             margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            font-weight: 400;
         }
 
         .hero h1 em {
             font-style: italic;
-            color: var(--amber);
+            color: var(--gold);
         }
 
         .hero-desc {
-            font-size: 1.35rem;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            opacity: 0.9;
-            font-weight: 300;
+            font-size: 1.15rem;
+            color: var(--beige);
+            max-width: 480px;
+            margin-bottom: 2.5rem;
             line-height: 1.8;
         }
 
         .hero-cta {
             display: flex;
             gap: 1rem;
-            justify-content: center;
             flex-wrap: wrap;
         }
 
-        .btn-glow {
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--amber) 100%);
-            color: white;
-            padding: 1.25rem 3rem;
-            border-radius: 100px;
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--honey) 100%);
+            color: var(--chocolate);
+            padding: 1.15rem 2.5rem;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 40px rgba(194, 112, 62, 0.4);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 162, 76, 0.3);
         }
 
-        .btn-glow:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(194, 112, 62, 0.5);
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(212, 162, 76, 0.4);
         }
 
-        .btn-ghost {
+        .btn-outline {
             background: transparent;
-            color: var(--cream);
-            padding: 1.25rem 3rem;
-            border-radius: 100px;
+            color: var(--gold);
+            padding: 1.15rem 2.5rem;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 1.05rem;
-            border: 1px solid rgba(255,255,255,0.4);
+            font-size: 0.9rem;
+            border: 1px solid var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             transition: all 0.3s ease;
         }
 
-        .btn-ghost:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.6);
+        .btn-outline:hover {
+            background: rgba(212, 162, 76, 0.1);
         }
 
-        .hero-scroll {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--cream);
-            opacity: 0.6;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 0.75rem;
-            animation: bounce 2s infinite;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
+        .hero-image-main {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
         }
 
-        /* Philosophy - Warm & Inviting */
-        .philosophy {
-            padding: 10rem 8%;
-            background: var(--earth);
+        .hero-floating {
+            position: absolute;
+            background: rgba(61, 46, 34, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 162, 76, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-floating.top-left {
+            top: 10%;
+            left: -10%;
+        }
+
+        .hero-floating.bottom-right {
+            bottom: 15%;
+            right: -5%;
+        }
+
+        .floating-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--honey) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .floating-text {
             color: var(--cream);
+            font-size: 0.85rem;
+        }
+
+        .floating-text strong {
+            display: block;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Philosophy */
+        .philosophy {
+            padding: 8rem 6%;
+            background: var(--coffee);
             position: relative;
             overflow: hidden;
         }
@@ -241,12 +291,11 @@
         .philosophy::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(194, 112, 62, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(212, 162, 76, 0.08) 0%, transparent 60%);
         }
 
         .philosophy-content {
@@ -257,46 +306,54 @@
             z-index: 2;
         }
 
-        .philosophy-symbol {
-            font-size: 2.5rem;
-            color: var(--amber);
-            margin-bottom: 2rem;
-            opacity: 0.8;
+        .philosophy-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 2rem;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--gold);
         }
 
         .philosophy h2 {
-            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+            color: var(--cream);
+            margin-bottom: 1.5rem;
             font-weight: 400;
-            margin-bottom: 2rem;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .philosophy h2 em {
             font-style: italic;
-            color: var(--amber);
+            color: var(--gold);
         }
 
         .philosophy p {
-            font-size: 1.2rem;
-            opacity: 0.8;
+            font-size: 1.1rem;
+            color: var(--beige);
             line-height: 1.9;
+            opacity: 0.85;
         }
 
-        /* Rituals - Product Cards */
+        /* Rituals */
         .rituals {
-            padding: 8rem 8%;
-            background: linear-gradient(180deg, var(--parchment) 0%, var(--cream) 100%);
+            padding: 8rem 6%;
+            background: var(--chocolate);
         }
 
         .section-header {
             text-align: center;
             max-width: 600px;
-            margin: 0 auto 5rem;
+            margin: 0 auto 4rem;
         }
 
         .section-label {
-            color: var(--terracotta);
-            font-size: 0.85rem;
+            color: var(--gold);
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.25em;
             margin-bottom: 1rem;
@@ -304,40 +361,41 @@
         }
 
         .section-header h2 {
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            color: var(--earth);
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--cream);
             margin-bottom: 1rem;
         }
 
         .section-header p {
-            color: var(--wood);
-            font-size: 1.1rem;
+            color: var(--beige);
+            font-size: 1.05rem;
             opacity: 0.8;
         }
 
         .rituals-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-            max-width: 1300px;
+            gap: 2rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .ritual-card {
-            background: var(--cream);
-            border-radius: 24px;
+            background: var(--coffee);
+            border-radius: 8px;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 40px rgba(44, 24, 16, 0.08);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(212, 162, 76, 0.1);
         }
 
         .ritual-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 30px 60px rgba(194, 112, 62, 0.2);
+            transform: translateY(-8px);
+            border-color: rgba(212, 162, 76, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
 
         .ritual-image {
-            height: 280px;
+            height: 240px;
             background-size: cover;
             background-position: center;
             position: relative;
@@ -347,18 +405,18 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 40%, rgba(44, 24, 16, 0.6) 100%);
+            background: linear-gradient(180deg, transparent 30%, var(--coffee) 100%);
         }
 
         .ritual-badge {
             position: absolute;
-            top: 1.25rem;
-            left: 1.25rem;
-            background: var(--cream);
-            color: var(--terracotta);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gold);
+            color: var(--chocolate);
+            padding: 0.4rem 0.8rem;
+            border-radius: 2px;
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -366,46 +424,48 @@
         }
 
         .ritual-content {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .ritual-content h3 {
-            font-size: 1.75rem;
-            color: var(--earth);
+            font-size: 1.4rem;
+            color: var(--gold);
             margin-bottom: 0.75rem;
         }
 
         .ritual-content p {
-            color: var(--wood);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
+            color: var(--beige);
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+            opacity: 0.85;
         }
 
         .ritual-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1.25rem;
-            border-top: 1px solid rgba(44, 24, 16, 0.1);
+            padding-top: 1rem;
+            border-top: 1px solid rgba(212, 162, 76, 0.15);
         }
 
         .ritual-meta {
-            font-size: 0.85rem;
-            color: var(--sage);
+            font-size: 0.8rem;
+            color: var(--beige);
+            opacity: 0.6;
         }
 
         .ritual-price {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: var(--terracotta);
+            color: var(--gold);
         }
 
-        /* Features - What's Inside */
+        /* Features */
         .features {
-            padding: 8rem 8%;
-            background: var(--cream);
+            padding: 8rem 6%;
+            background: linear-gradient(180deg, var(--coffee) 0%, var(--chocolate) 100%);
         }
 
         .features-grid {
@@ -423,31 +483,34 @@
 
         .features-image img {
             width: 100%;
-            border-radius: 24px;
-            box-shadow: 0 30px 80px rgba(44, 24, 16, 0.15);
+            border-radius: 8px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
 
         .features-image::before {
-            content: '✦';
+            content: '';
             position: absolute;
-            top: -40px;
-            right: -30px;
-            font-size: 5rem;
-            color: var(--terracotta);
-            opacity: 0.15;
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            opacity: 0.3;
         }
 
         .features-content h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--earth);
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            color: var(--cream);
             margin-bottom: 1.5rem;
         }
 
         .features-content > p {
-            color: var(--wood);
-            font-size: 1.1rem;
+            color: var(--beige);
+            font-size: 1.05rem;
             margin-bottom: 2.5rem;
             opacity: 0.85;
+            line-height: 1.8;
         }
 
         .feature-list {
@@ -463,75 +526,35 @@
         }
 
         .feature-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--amber) 100%);
-            border-radius: 14px;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--honey) 100%);
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
-            box-shadow: 0 8px 20px rgba(194, 112, 62, 0.25);
         }
 
         .feature-item h4 {
-            font-size: 1.15rem;
-            color: var(--earth);
+            font-size: 1rem;
+            color: var(--gold);
             margin-bottom: 0.25rem;
             font-family: 'Karla', sans-serif;
             font-weight: 600;
         }
 
         .feature-item p {
-            font-size: 0.9rem;
-            color: var(--wood);
-            opacity: 0.75;
-        }
-
-        /* Atmosphere Section */
-        .atmosphere {
-            height: 70vh;
-            min-height: 500px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .atmosphere-bg {
-            position: absolute;
-            inset: 0;
-            background: url('https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1920&q=85') center/cover;
-            filter: brightness(0.45) saturate(1.2);
-        }
-
-        .atmosphere-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: var(--cream);
-            max-width: 700px;
-            padding: 0 5%;
-        }
-
-        .atmosphere h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
-        }
-
-        .atmosphere p {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            line-height: 1.8;
+            font-size: 0.85rem;
+            color: var(--beige);
+            opacity: 0.7;
         }
 
         /* CTA */
         .cta {
-            padding: 8rem 8%;
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+            padding: 6rem;
+            background: linear-gradient(135deg, var(--mocha) 0%, var(--coffee) 100%);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -541,58 +564,34 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='20' stroke='%23ffffff' stroke-width='0.5' fill='none' opacity='0.08'/%3E%3C/svg%3E");
-            background-size: 100px 100px;
+            background: radial-gradient(ellipse at center, rgba(212, 162, 76, 0.12) 0%, transparent 60%);
         }
 
         .cta-content {
             position: relative;
             z-index: 2;
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
-            color: var(--cream);
         }
 
         .cta h2 {
-            font-size: clamp(2.5rem, 4vw, 4rem);
-            margin-bottom: 1.5rem;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--cream);
+            margin-bottom: 1rem;
         }
 
         .cta p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-light {
-            background: var(--cream);
-            color: var(--terracotta-dark);
-            padding: 1.25rem 3rem;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-light:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            color: var(--beige);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.85;
         }
 
         /* Footer */
         footer {
-            background: var(--earth);
-            padding: 4rem 8%;
-            color: var(--sand);
+            background: #1A1310;
+            padding: 3rem 6%;
+            border-top: 1px solid rgba(212, 162, 76, 0.1);
         }
 
         .footer-content {
@@ -603,41 +602,58 @@
             align-items: center;
         }
 
-        .footer-brand h4 {
+        .footer-brand {
+            color: var(--gold);
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.75rem;
-            color: var(--cream);
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-brand p {
-            font-size: 0.9rem;
-            opacity: 0.6;
+            font-size: 1.5rem;
         }
 
         .footer-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
         }
 
         .footer-links a {
-            color: var(--sand);
+            color: var(--beige);
             text-decoration: none;
-            font-size: 0.9rem;
-            opacity: 0.7;
+            font-size: 0.85rem;
+            opacity: 0.6;
             transition: all 0.3s ease;
         }
 
         .footer-links a:hover {
             opacity: 1;
-            color: var(--amber);
+            color: var(--gold);
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                padding-right: 0;
+            }
+
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .hero-floating {
+                display: none;
+            }
+
             .rituals-grid {
                 grid-template-columns: 1fr;
-                max-width: 500px;
+                max-width: 450px;
             }
 
             .features-grid {
@@ -656,7 +672,7 @@
 
             .footer-content {
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1.5rem;
                 text-align: center;
             }
         }
@@ -664,34 +680,47 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav>
         <a href="#" class="logo">ZenSlate</a>
-        <a href="#rituals" class="nav-cta">Explore Rituals</a>
+        <a href="#rituals" class="nav-cta">Shop Rituals</a>
     </nav>
 
-    <!-- Hero - Immersive -->
+    <!-- Hero -->
     <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-symbol">☽</div>
-            <h1>Write Your Way <em>Back to Yourself</em></h1>
-            <p class="hero-desc">Guided ritual journals for healing, growth, and transformation. Each page a step closer to inner peace.</p>
-            <div class="hero-cta">
-                <a href="#rituals" class="btn-glow">Begin Your Ritual</a>
-                <a href="#philosophy" class="btn-ghost">Our Philosophy</a>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">Handcrafted Ritual Journals</div>
+                <h1>Write Your Way Back to <em>Yourself</em></h1>
+                <p class="hero-desc">Guided journals designed as sacred rituals. Each page a step toward healing, clarity, and inner peace. Handcrafted with intention.</p>
+                <div class="hero-cta">
+                    <a href="#rituals" class="btn-gold">Begin Your Ritual</a>
+                    <a href="#philosophy" class="btn-outline">Our Philosophy</a>
+                </div>
             </div>
-        </div>
-        <div class="hero-scroll">
-            <span>Scroll to explore</span>
-            <span>↓</span>
+            <div class="hero-visual">
+                <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&q=85" alt="ZenSlate Journal" class="hero-image-main">
+                <div class="hero-floating top-left">
+                    <div class="floating-icon">☽</div>
+                    <div class="floating-text">
+                        <strong>40+ Pages</strong>
+                        Guided exercises
+                    </div>
+                </div>
+                <div class="hero-floating bottom-right">
+                    <div class="floating-icon">✦</div>
+                    <div class="floating-text">
+                        <strong>30-Day Rituals</strong>
+                        Transform within
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Philosophy -->
     <section class="philosophy" id="philosophy">
         <div class="philosophy-content">
-            <div class="philosophy-symbol">◇</div>
+            <div class="philosophy-icon">◇</div>
             <h2>Writing is not journaling. It is a <em>ritual of becoming.</em></h2>
             <p>Each ZenSlate is a sacred container for your inner work. We believe the simple act of putting pen to paper can unlock profound transformation — when guided with intention, wisdom, and care.</p>
         </div>
@@ -706,12 +735,12 @@
         </div>
         <div class="rituals-grid">
             <div class="ritual-card">
-                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=800&q=80')">
+                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1602528495711-53f65a79e9e5?w=600&q=80')">
                     <span class="ritual-badge">Bestseller</span>
                 </div>
                 <div class="ritual-content">
                     <h3>The Ritual of Renewal</h3>
-                    <p>Release what no longer serves you. A 30-day journey through letting go, forgiveness, and fresh beginnings.</p>
+                    <p>Release what no longer serves you. A journey through letting go, forgiveness, and fresh beginnings.</p>
                     <div class="ritual-footer">
                         <span class="ritual-meta">40 pages · 30 days</span>
                         <span class="ritual-price">€29</span>
@@ -719,12 +748,12 @@
                 </div>
             </div>
             <div class="ritual-card">
-                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80')">
+                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&q=80')">
                     <span class="ritual-badge">Inner Peace</span>
                 </div>
                 <div class="ritual-content">
                     <h3>The Ritual of Stillness</h3>
-                    <p>Quiet the noise within. Practices for anxiety relief, presence, and finding calm in chaos.</p>
+                    <p>Quiet the noise within. Practices for anxiety relief, presence, and finding calm.</p>
                     <div class="ritual-footer">
                         <span class="ritual-meta">48 pages · 21 days</span>
                         <span class="ritual-price">€29</span>
@@ -732,12 +761,12 @@
                 </div>
             </div>
             <div class="ritual-card">
-                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1476820865390-c52aeebb9891?w=800&q=80')">
+                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1474418397713-7ede21d49118?w=600&q=80')">
                     <span class="ritual-badge">Self-Discovery</span>
                 </div>
                 <div class="ritual-content">
                     <h3>The Ritual of Knowing</h3>
-                    <p>Who are you, really? Deep prompts to uncover your values, desires, and authentic self.</p>
+                    <p>Who are you, really? Deep prompts to uncover your values and authentic self.</p>
                     <div class="ritual-footer">
                         <span class="ritual-meta">52 pages · 40 days</span>
                         <span class="ritual-price">€32</span>
@@ -751,7 +780,7 @@
     <section class="features" id="inside">
         <div class="features-grid">
             <div class="features-image">
-                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&q=80" alt="Writing ritual">
+                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=700&q=85" alt="Journal interior">
             </div>
             <div class="features-content">
                 <h2>More Than a Journal</h2>
@@ -761,41 +790,32 @@
                         <div class="feature-icon">📖</div>
                         <div>
                             <h4>Introduction & Guidance</h4>
-                            <p>Context and intention to begin your journey right</p>
+                            <p>Context and intention to begin your journey</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">✍️</div>
                         <div>
                             <h4>Daily Practices</h4>
-                            <p>Structured exercises designed by mindfulness experts</p>
+                            <p>Structured exercises designed by experts</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">◇</div>
                         <div>
                             <h4>Weekly Reflections</h4>
-                            <p>Check-ins to track progress and deepen insights</p>
+                            <p>Check-ins to track progress and insights</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">☽</div>
                         <div>
                             <h4>Closing Ceremony</h4>
-                            <p>Integration practices to seal your transformation</p>
+                            <p>Integration practices to seal transformation</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Atmosphere -->
-    <section class="atmosphere">
-        <div class="atmosphere-bg"></div>
-        <div class="atmosphere-content">
-            <h2>Create Your Sacred Space</h2>
-            <p>Light a candle. Pour your tea. Open your ZenSlate. This is your time — a ritual just for you.</p>
         </div>
     </section>
 
@@ -804,19 +824,14 @@
         <div class="cta-content">
             <h2>Begin Your Ritual</h2>
             <p>Every transformation starts with a single page. Choose the journal that calls to you.</p>
-            <div class="cta-buttons">
-                <a href="#rituals" class="btn-light">Shop All Rituals</a>
-            </div>
+            <a href="#rituals" class="btn-gold">Shop All Rituals</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-brand">
-                <h4>ZenSlate</h4>
-                <p>Ritual journals for the modern seeker</p>
-            </div>
+            <div class="footer-brand">ZenSlate</div>
             <div class="footer-links">
                 <a href="#">About</a>
                 <a href="#">Shipping</a>
@@ -825,17 +840,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // Nav scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-    </script>
 </body>
 </html>
