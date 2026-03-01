@@ -15,19 +15,18 @@
         }
 
         :root {
-            --terracotta: #C45C3E;
-            --terracotta-dark: #A04530;
-            --terracotta-light: #D4826A;
-            --clay: #D4956A;
-            --ochre: #CC8B4A;
+            --terracotta: #C2703E;
+            --terracotta-dark: #9E5A32;
+            --terracotta-light: #D4956A;
+            --amber: #E8A54B;
+            --gold: #D4A853;
             --sand: #E8D4B8;
-            --cream: #FDF8F3;
-            --parchment: #F5E6D3;
-            --earth: #3D2914;
-            --wood: #5C3D2E;
+            --cream: #FBF6F0;
+            --parchment: #F2E6D9;
+            --earth: #2C1810;
+            --wood: #4A3228;
             --sage: #6B7D5E;
             --forest: #3D4A35;
-            --ink: #1A1612;
         }
 
         html {
@@ -44,466 +43,326 @@
         h1, h2, h3, h4 {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 500;
-            line-height: 1.3;
+            line-height: 1.2;
         }
 
-        /* Organic texture overlay */
-        .organic-bg {
-            position: relative;
-        }
-
-        .organic-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.04;
-            pointer-events: none;
-        }
-
-        /* Navigation */
+        /* Navigation - Transparent on hero */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1.25rem 6%;
+            padding: 1.5rem 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(253, 248, 243, 0.9);
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(44, 24, 16, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(196, 92, 62, 0.1);
+            padding: 1rem 6%;
         }
 
         .logo {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.75rem;
             font-weight: 600;
-            color: var(--terracotta);
+            color: var(--cream);
             text-decoration: none;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.05em;
         }
 
         .nav-cta {
-            background: var(--terracotta);
+            background: rgba(255,255,255,0.15);
             color: var(--cream);
             padding: 0.75rem 1.75rem;
             border-radius: 100px;
             text-decoration: none;
             font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.3);
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .nav-cta:hover {
-            background: var(--terracotta-dark);
-            transform: translateY(-2px);
+            background: var(--cream);
+            color: var(--earth);
+            border-color: var(--cream);
         }
 
-        /* Hero */
+        /* Hero - Full immersive */
         .hero {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 120px 8% 80px;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--parchment) 50%, var(--sand) 100%);
-            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        /* Organic decorative elements */
-        .hero::before {
-            content: '';
+        .hero-bg {
             position: absolute;
-            top: -200px;
-            right: -200px;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(196, 92, 62, 0.12) 0%, transparent 70%);
-            border-radius: 50%;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=85') center/cover;
+            filter: brightness(0.4);
         }
 
-        .hero::after {
-            content: '';
+        .hero-overlay {
             position: absolute;
-            bottom: -150px;
-            left: -150px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(212, 149, 106, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(44, 24, 16, 0.3) 0%,
+                rgba(44, 24, 16, 0.5) 50%,
+                rgba(44, 24, 16, 0.8) 100%
+            );
         }
-
-        .hero-decoration {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .leaf-1, .leaf-2, .leaf-3 {
-            position: absolute;
-            font-size: 4rem;
-            opacity: 0.08;
-            color: var(--terracotta);
-        }
-
-        .leaf-1 { top: 15%; left: 8%; transform: rotate(-25deg); }
-        .leaf-2 { top: 60%; right: 5%; transform: rotate(15deg); font-size: 3rem; }
-        .leaf-3 { bottom: 20%; left: 15%; transform: rotate(-10deg); font-size: 2.5rem; }
 
         .hero-content {
             position: relative;
             z-index: 2;
+            text-align: center;
+            color: var(--cream);
+            max-width: 900px;
+            padding: 0 5%;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
-            color: var(--cream);
-            padding: 0.6rem 1.5rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
+        .hero-symbol {
+            font-size: 3rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(196, 92, 62, 0.3);
+            opacity: 0.7;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .hero h1 {
-            font-size: clamp(2.75rem, 6vw, 4.5rem);
-            color: var(--earth);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 400;
             margin-bottom: 1.5rem;
-            max-width: 750px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
         }
 
         .hero h1 em {
             font-style: italic;
-            color: var(--terracotta);
-            display: block;
+            color: var(--amber);
         }
 
         .hero-desc {
-            font-size: 1.2rem;
-            color: var(--wood);
-            max-width: 520px;
+            font-size: 1.35rem;
+            max-width: 600px;
             margin: 0 auto 3rem;
-            opacity: 0.85;
-        }
-
-        /* Product Display */
-        .hero-products {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            position: relative;
-        }
-
-        .hero-product {
-            position: relative;
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .hero-product:hover {
-            transform: translateY(-15px) rotate(0deg) !important;
-            z-index: 10;
-        }
-
-        .hero-product:nth-child(1) {
-            transform: rotate(-12deg) translateY(20px);
-        }
-
-        .hero-product:nth-child(2) {
-            z-index: 2;
-        }
-
-        .hero-product:nth-child(3) {
-            transform: rotate(12deg) translateY(20px);
-        }
-
-        .hero-product img {
-            width: 180px;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 6px;
-            box-shadow: 0 20px 50px rgba(61, 41, 20, 0.25);
-            border: 4px solid var(--cream);
+            opacity: 0.9;
+            font-weight: 300;
+            line-height: 1.8;
         }
 
         .hero-cta {
             display: flex;
             gap: 1rem;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
-            color: var(--cream);
-            padding: 1.15rem 2.5rem;
+        .btn-glow {
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--amber) 100%);
+            color: white;
+            padding: 1.25rem 3rem;
             border-radius: 100px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
-            display: inline-flex;
+            font-size: 1.05rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 40px rgba(194, 112, 62, 0.4);
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(194, 112, 62, 0.5);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--cream);
+            padding: 1.25rem 3rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--cream);
+            opacity: 0.6;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 0.75rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(196, 92, 62, 0.3);
+            animation: bounce 2s infinite;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(196, 92, 62, 0.4);
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--terracotta);
-            padding: 1.15rem 2.5rem;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            border: 2px solid var(--terracotta);
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background: var(--terracotta);
-            color: var(--cream);
-        }
-
-        /* What's Inside - Earthy */
-        .whats-inside {
-            padding: 8rem 8%;
-            background: linear-gradient(135deg, var(--earth) 0%, var(--wood) 100%);
+        /* Philosophy - Warm & Inviting */
+        .philosophy {
+            padding: 10rem 8%;
+            background: var(--earth);
             color: var(--cream);
             position: relative;
             overflow: hidden;
         }
 
-        .whats-inside::before {
+        .philosophy::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C45C3E' fill-opacity='0.05'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3Ccircle cx='40' cy='40' r='20' fill='none' stroke='%23C45C3E' stroke-opacity='0.03'/%3E%3C/g%3E%3C/svg%3E");
-            background-size: 120px 120px;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(194, 112, 62, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
-        .section-header {
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
-            max-width: 650px;
-            margin: 0 auto 5rem;
             position: relative;
             z-index: 2;
         }
 
+        .philosophy-symbol {
+            font-size: 2.5rem;
+            color: var(--amber);
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .philosophy h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .philosophy h2 em {
+            font-style: italic;
+            color: var(--amber);
+        }
+
+        .philosophy p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            line-height: 1.9;
+        }
+
+        /* Rituals - Product Cards */
+        .rituals {
+            padding: 8rem 8%;
+            background: linear-gradient(180deg, var(--parchment) 0%, var(--cream) 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 5rem;
+        }
+
         .section-label {
-            color: var(--terracotta-light);
-            font-weight: 600;
+            color: var(--terracotta);
             font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             margin-bottom: 1rem;
             display: block;
         }
 
         .section-header h2 {
-            font-size: clamp(2.25rem, 4vw, 3.25rem);
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            color: var(--earth);
             margin-bottom: 1rem;
         }
 
         .section-header p {
-            opacity: 0.75;
+            color: var(--wood);
             font-size: 1.1rem;
-        }
-
-        .inside-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .inside-image {
-            position: relative;
-        }
-
-        .inside-image img {
-            width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-            border: 6px solid rgba(196, 92, 62, 0.3);
-        }
-
-        .inside-image::before {
-            content: '☽';
-            position: absolute;
-            top: -30px;
-            right: -20px;
-            font-size: 4rem;
-            color: var(--terracotta-light);
-            opacity: 0.3;
-        }
-
-        .inside-features {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .inside-feature {
-            display: flex;
-            gap: 1.25rem;
-            align-items: flex-start;
-        }
-
-        .inside-icon {
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-            box-shadow: 0 8px 20px rgba(196, 92, 62, 0.3);
-        }
-
-        .inside-feature h4 {
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
-            color: var(--sand);
-        }
-
-        .inside-feature p {
-            font-size: 0.95rem;
-            opacity: 0.7;
-        }
-
-        /* Rituals - Warm Terracotta */
-        .rituals {
-            padding: 8rem 8%;
-            background: var(--parchment);
-            position: relative;
-        }
-
-        .rituals::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 200px;
-            background: linear-gradient(180deg, var(--wood) 0%, transparent 100%);
-            opacity: 0.05;
-        }
-
-        .rituals .section-header {
-            color: var(--earth);
-        }
-
-        .rituals .section-label {
-            color: var(--terracotta);
+            opacity: 0.8;
         }
 
         .rituals-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
+            gap: 2.5rem;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
         .ritual-card {
             background: var(--cream);
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(196, 92, 62, 0.15);
-            box-shadow: 0 10px 30px rgba(61, 41, 20, 0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(44, 24, 16, 0.08);
         }
 
         .ritual-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(196, 92, 62, 0.2);
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(194, 112, 62, 0.2);
         }
 
-        .ritual-cover {
-            height: 300px;
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .ritual-image {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
             position: relative;
-            overflow: hidden;
         }
 
-        .ritual-cover::before {
+        .ritual-image::after {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='100' cy='100' r='80' stroke='%23FDF8F3' stroke-width='0.5' fill='none' opacity='0.2'/%3E%3Ccircle cx='100' cy='100' r='60' stroke='%23FDF8F3' stroke-width='0.5' fill='none' opacity='0.15'/%3E%3Ccircle cx='100' cy='100' r='40' stroke='%23FDF8F3' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3Ccircle cx='100' cy='100' r='20' stroke='%23FDF8F3' stroke-width='0.5' fill='none' opacity='0.05'/%3E%3C/svg%3E");
-            background-size: 250px 250px;
-            background-position: center;
+            background: linear-gradient(180deg, transparent 40%, rgba(44, 24, 16, 0.6) 100%);
         }
 
-        .ritual-book {
-            width: 130px;
-            height: 185px;
-            background: linear-gradient(145deg, var(--cream) 0%, var(--parchment) 100%);
-            border-radius: 4px 10px 10px 4px;
-            box-shadow: -8px 8px 25px rgba(0,0,0,0.35), inset -3px 0 10px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .ritual-book::before {
-            content: '';
+        .ritual-badge {
             position: absolute;
-            left: 0;
-            top: 8%;
-            bottom: 8%;
-            width: 5px;
-            background: linear-gradient(180deg, var(--terracotta) 0%, var(--ochre) 100%);
-            border-radius: 2px;
-        }
-
-        .ritual-book-symbol {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
+            top: 1.25rem;
+            left: 1.25rem;
+            background: var(--cream);
             color: var(--terracotta);
-        }
-
-        .ritual-book-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem;
-            text-align: center;
-            color: var(--earth);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
             font-weight: 600;
-            line-height: 1.4;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            z-index: 2;
         }
 
         .ritual-content {
@@ -511,224 +370,166 @@
         }
 
         .ritual-content h3 {
-            font-size: 1.5rem;
-            color: var(--terracotta-dark);
-            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+            color: var(--earth);
+            margin-bottom: 0.75rem;
         }
 
         .ritual-content p {
             color: var(--wood);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-bottom: 1.5rem;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        .ritual-details {
+        .ritual-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(196, 92, 62, 0.15);
+            padding-top: 1.25rem;
+            border-top: 1px solid rgba(44, 24, 16, 0.1);
         }
 
-        .ritual-specs {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.8rem;
+        .ritual-meta {
+            font-size: 0.85rem;
             color: var(--sage);
-        }
-
-        .ritual-specs span {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
         }
 
         .ritual-price {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
+            font-size: 1.75rem;
             font-weight: 600;
             color: var(--terracotta);
         }
 
-        /* Page Samples - Organic Paper Feel */
-        .samples {
+        /* Features - What's Inside */
+        .features {
             padding: 8rem 8%;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%);
-            position: relative;
+            background: var(--cream);
         }
 
-        .samples .section-label {
-            color: var(--terracotta);
-        }
-
-        .samples .section-header h2 {
-            color: var(--earth);
-        }
-
-        .samples-showcase {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .sample-page {
-            aspect-ratio: 3/4;
-            background: linear-gradient(145deg, var(--cream) 0%, #F8F0E3 100%);
-            border-radius: 8px;
-            box-shadow: 0 15px 35px rgba(61, 41, 20, 0.12);
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(196, 92, 62, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sample-page::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-        }
-
-        .sample-page:hover {
-            transform: translateY(-8px) rotate(-2deg);
-            box-shadow: 0 25px 50px rgba(196, 92, 62, 0.2);
-        }
-
-        .sample-header {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            color: var(--terracotta);
-            margin-bottom: 1rem;
-            font-style: italic;
-            border-bottom: 1px solid rgba(196, 92, 62, 0.2);
-            padding-bottom: 0.5rem;
-        }
-
-        .sample-lines {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0.7rem;
-        }
-
-        .sample-line {
-            height: 1px;
-            background: linear-gradient(90deg, rgba(196, 92, 62, 0.2) 0%, rgba(196, 92, 62, 0.05) 100%);
-            border-radius: 1px;
-        }
-
-        .sample-line:nth-child(odd) {
-            width: 100%;
-        }
-
-        .sample-line:nth-child(even) {
-            width: 80%;
-        }
-
-        .sample-prompt {
-            margin-top: auto;
-            padding-top: 1rem;
-            font-size: 0.8rem;
-            color: var(--terracotta-dark);
-            font-style: italic;
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        /* Materials - Wood & Earth */
-        .materials {
-            padding: 8rem 8%;
-            background: linear-gradient(135deg, var(--wood) 0%, var(--earth) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .materials::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L100 50 L50 100 L0 50 Z' fill='none' stroke='%23C45C3E' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
-            background-size: 80px 80px;
-        }
-
-        .materials-content {
-            max-width: 1100px;
-            margin: 0 auto;
+        .features-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
             align-items: center;
+        }
+
+        .features-image {
             position: relative;
-            z-index: 2;
         }
 
-        .materials-text {
-            color: var(--cream);
+        .features-image img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(44, 24, 16, 0.15);
         }
 
-        .materials-text h2 {
+        .features-image::before {
+            content: '✦';
+            position: absolute;
+            top: -40px;
+            right: -30px;
+            font-size: 5rem;
+            color: var(--terracotta);
+            opacity: 0.15;
+        }
+
+        .features-content h2 {
             font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--earth);
             margin-bottom: 1.5rem;
         }
 
-        .materials-text p {
-            opacity: 0.8;
+        .features-content > p {
+            color: var(--wood);
             font-size: 1.1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.85;
         }
 
-        .materials-list {
+        .feature-list {
             display: flex;
             flex-direction: column;
-            gap: 1.25rem;
+            gap: 1.5rem;
         }
 
-        .material-item {
+        .feature-item {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--amber) 100%);
+            border-radius: 14px;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            font-size: 1rem;
-            padding: 0.75rem 1rem;
-            background: rgba(196, 92, 62, 0.15);
-            border-radius: 8px;
-            border-left: 3px solid var(--terracotta-light);
-        }
-
-        .material-item span {
+            justify-content: center;
             font-size: 1.25rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(194, 112, 62, 0.25);
         }
 
-        .materials-image {
+        .feature-item h4 {
+            font-size: 1.15rem;
+            color: var(--earth);
+            margin-bottom: 0.25rem;
+            font-family: 'Karla', sans-serif;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--wood);
+            opacity: 0.75;
+        }
+
+        /* Atmosphere Section */
+        .atmosphere {
+            height: 70vh;
+            min-height: 500px;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .materials-image img {
-            width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .materials-image::after {
-            content: '✦';
+        .atmosphere-bg {
             position: absolute;
-            bottom: -20px;
-            left: -20px;
-            font-size: 3rem;
-            color: var(--terracotta-light);
-            opacity: 0.4;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=85') center/cover;
+            filter: brightness(0.5) saturate(1.2);
         }
 
-        /* CTA - Bold Terracotta */
-        .cta-section {
+        .atmosphere-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--cream);
+            max-width: 700px;
+            padding: 0 5%;
+        }
+
+        .atmosphere h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .atmosphere p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* CTA */
+        .cta {
             padding: 8rem 8%;
             background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
             text-align: center;
@@ -736,12 +537,12 @@
             overflow: hidden;
         }
 
-        .cta-section::before {
+        .cta::before {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='50' stroke='%23FDF8F3' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3Ccircle cx='60' cy='60' r='35' stroke='%23FDF8F3' stroke-width='0.5' fill='none' opacity='0.08'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='20' stroke='%23ffffff' stroke-width='0.5' fill='none' opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 100px 100px;
         }
 
         .cta-content {
@@ -752,83 +553,71 @@
             color: var(--cream);
         }
 
-        .cta-content h2 {
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
+        .cta h2 {
+            font-size: clamp(2.5rem, 4vw, 4rem);
             margin-bottom: 1.5rem;
         }
 
-        .cta-content h2 em {
-            font-style: italic;
-            color: var(--sand);
-        }
-
-        .cta-content p {
-            opacity: 0.85;
-            font-size: 1.15rem;
+        .cta p {
+            font-size: 1.2rem;
+            opacity: 0.9;
             margin-bottom: 2.5rem;
         }
 
         .cta-buttons {
             display: flex;
-            justify-content: center;
             gap: 1rem;
+            justify-content: center;
             flex-wrap: wrap;
         }
 
         .btn-light {
             background: var(--cream);
             color: var(--terracotta-dark);
-            padding: 1.15rem 2.5rem;
+            padding: 1.25rem 3rem;
             border-radius: 100px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.05rem;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
         .btn-light:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-outline-light {
-            background: transparent;
-            color: var(--cream);
-            padding: 1.15rem 2.5rem;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            border: 2px solid rgba(255,255,255,0.4);
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline-light:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.7);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
 
         /* Footer */
         footer {
-            background: var(--ink);
-            padding: 3rem 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--earth);
+            padding: 4rem 8%;
             color: var(--sand);
         }
 
-        .footer-logo {
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand h4 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--terracotta-light);
+            font-size: 1.75rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            opacity: 0.6;
         }
 
         .footer-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .footer-links a {
@@ -841,68 +630,33 @@
 
         .footer-links a:hover {
             opacity: 1;
-            color: var(--terracotta-light);
+            color: var(--amber);
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .inside-grid,
-            .materials-content {
+            .rituals-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .features-grid {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
-
-            .rituals-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-            }
-
-            .samples-showcase {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .hero-product img {
-                width: 140px;
-                height: 195px;
-            }
         }
 
-        @media (max-width: 640px) {
-            .hero,
-            .whats-inside,
+        @media (max-width: 768px) {
+            .philosophy,
             .rituals,
-            .samples,
-            .materials,
-            .cta-section {
+            .features,
+            .cta {
                 padding: 5rem 5%;
             }
 
-            .hero-products {
-                gap: 0.75rem;
-            }
-
-            .hero-product img {
-                width: 90px;
-                height: 125px;
-            }
-
-            .hero-product:nth-child(1),
-            .hero-product:nth-child(3) {
-                transform: rotate(-8deg);
-            }
-
-            .hero-product:nth-child(3) {
-                transform: rotate(8deg);
-            }
-
-            .samples-showcase {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-
-            footer {
+            .footer-content {
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 2rem;
                 text-align: center;
             }
         }
@@ -910,152 +664,82 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <a href="#" class="logo">ZenSlate</a>
-        <a href="#rituals" class="nav-cta">Shop Journals</a>
+        <a href="#rituals" class="nav-cta">Explore Rituals</a>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero organic-bg">
-        <div class="hero-decoration">
-            <span class="leaf-1">🌿</span>
-            <span class="leaf-2">☽</span>
-            <span class="leaf-3">✦</span>
-        </div>
+    <!-- Hero - Immersive -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="hero-badge">
-                ◇ Handcrafted Ritual Journals
-            </div>
-            <h1>Journals for <em>Inner Work</em></h1>
-            <p class="hero-desc">Each ZenSlate is a guided ritual — 40+ pages of exercises, prompts, and practices to help you heal, grow, and transform.</p>
-            
-            <div class="hero-products">
-                <div class="hero-product">
-                    <img src="https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=400&q=80" alt="ZenSlate Journal">
-                </div>
-                <div class="hero-product">
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" alt="ZenSlate Journal Open">
-                </div>
-                <div class="hero-product">
-                    <img src="https://images.unsplash.com/photo-1518893063132-36e46dbe2428?w=400&q=80" alt="ZenSlate Collection">
-                </div>
-            </div>
-
+            <div class="hero-symbol">☽</div>
+            <h1>Write Your Way <em>Back to Yourself</em></h1>
+            <p class="hero-desc">Guided ritual journals for healing, growth, and transformation. Each page a step closer to inner peace.</p>
             <div class="hero-cta">
-                <a href="#rituals" class="btn-primary">
-                    Explore Rituals
-                    <span>→</span>
-                </a>
-                <a href="#inside" class="btn-secondary">See Inside</a>
+                <a href="#rituals" class="btn-glow">Begin Your Ritual</a>
+                <a href="#philosophy" class="btn-ghost">Our Philosophy</a>
             </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll to explore</span>
+            <span>↓</span>
         </div>
     </section>
 
-    <!-- What's Inside -->
-    <section class="whats-inside organic-bg" id="inside">
-        <div class="section-header">
-            <span class="section-label">✦ What's Inside</span>
-            <h2>More Than a Journal</h2>
-            <p>Each ritual guides you through a complete transformation journey.</p>
-        </div>
-        <div class="inside-grid">
-            <div class="inside-image">
-                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&q=80" alt="Journal pages">
-            </div>
-            <div class="inside-features">
-                <div class="inside-feature">
-                    <div class="inside-icon">📖</div>
-                    <div>
-                        <h4>Introduction & Guidance</h4>
-                        <p>Every ritual begins with context — why this work matters and how to approach it.</p>
-                    </div>
-                </div>
-                <div class="inside-feature">
-                    <div class="inside-icon">✍️</div>
-                    <div>
-                        <h4>Daily Exercises</h4>
-                        <p>Structured prompts designed by therapists and mindfulness practitioners.</p>
-                    </div>
-                </div>
-                <div class="inside-feature">
-                    <div class="inside-icon">◇</div>
-                    <div>
-                        <h4>Reflection Pages</h4>
-                        <p>Weekly check-ins to track progress and deepen insights.</p>
-                    </div>
-                </div>
-                <div class="inside-feature">
-                    <div class="inside-icon">☽</div>
-                    <div>
-                        <h4>Closing Ceremony</h4>
-                        <p>Integration practices to seal your transformation.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Philosophy -->
+    <section class="philosophy" id="philosophy">
+        <div class="philosophy-content">
+            <div class="philosophy-symbol">◇</div>
+            <h2>Writing is not journaling. It is a <em>ritual of becoming.</em></h2>
+            <p>Each ZenSlate is a sacred container for your inner work. We believe the simple act of putting pen to paper can unlock profound transformation — when guided with intention, wisdom, and care.</p>
         </div>
     </section>
 
-    <!-- The Rituals -->
+    <!-- Rituals -->
     <section class="rituals" id="rituals">
         <div class="section-header">
-            <span class="section-label">☽ The Collection</span>
+            <span class="section-label">The Collection</span>
             <h2>Choose Your Ritual</h2>
-            <p>Each journal addresses a different aspect of inner work.</p>
+            <p>Each journal guides you through a different aspect of inner work.</p>
         </div>
         <div class="rituals-grid">
             <div class="ritual-card">
-                <div class="ritual-cover">
-                    <div class="ritual-book">
-                        <div class="ritual-book-symbol">☽</div>
-                        <div class="ritual-book-title">The Ritual of Renewal</div>
-                    </div>
+                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80')">
+                    <span class="ritual-badge">Bestseller</span>
                 </div>
                 <div class="ritual-content">
-                    <h3>Renewal</h3>
-                    <p>Release what no longer serves you. A journey through letting go, forgiveness, and fresh beginnings.</p>
-                    <div class="ritual-details">
-                        <div class="ritual-specs">
-                            <span>📄 40 pages</span>
-                            <span>◷ 30 days</span>
-                        </div>
+                    <h3>The Ritual of Renewal</h3>
+                    <p>Release what no longer serves you. A 30-day journey through letting go, forgiveness, and fresh beginnings.</p>
+                    <div class="ritual-footer">
+                        <span class="ritual-meta">40 pages · 30 days</span>
                         <span class="ritual-price">€29</span>
                     </div>
                 </div>
             </div>
             <div class="ritual-card">
-                <div class="ritual-cover" style="background: linear-gradient(135deg, var(--sage) 0%, var(--forest) 100%);">
-                    <div class="ritual-book">
-                        <div class="ritual-book-symbol">◇</div>
-                        <div class="ritual-book-title">The Ritual of Stillness</div>
-                    </div>
+                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&q=80')">
+                    <span class="ritual-badge">Inner Peace</span>
                 </div>
                 <div class="ritual-content">
-                    <h3>Stillness</h3>
-                    <p>Quiet the noise within. Practices for anxiety relief, presence, and finding calm.</p>
-                    <div class="ritual-details">
-                        <div class="ritual-specs">
-                            <span>📄 48 pages</span>
-                            <span>◷ 21 days</span>
-                        </div>
+                    <h3>The Ritual of Stillness</h3>
+                    <p>Quiet the noise within. Practices for anxiety relief, presence, and finding calm in chaos.</p>
+                    <div class="ritual-footer">
+                        <span class="ritual-meta">48 pages · 21 days</span>
                         <span class="ritual-price">€29</span>
                     </div>
                 </div>
             </div>
             <div class="ritual-card">
-                <div class="ritual-cover" style="background: linear-gradient(135deg, var(--ochre) 0%, var(--wood) 100%);">
-                    <div class="ritual-book">
-                        <div class="ritual-book-symbol">✦</div>
-                        <div class="ritual-book-title">The Ritual of Knowing</div>
-                    </div>
+                <div class="ritual-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80')">
+                    <span class="ritual-badge">Self-Discovery</span>
                 </div>
                 <div class="ritual-content">
-                    <h3>Knowing</h3>
-                    <p>Who are you, really? Deep prompts to uncover your values and authentic self.</p>
-                    <div class="ritual-details">
-                        <div class="ritual-specs">
-                            <span>📄 52 pages</span>
-                            <span>◷ 40 days</span>
-                        </div>
+                    <h3>The Ritual of Knowing</h3>
+                    <p>Who are you, really? Deep prompts to uncover your values, desires, and authentic self.</p>
+                    <div class="ritual-footer">
+                        <span class="ritual-meta">52 pages · 40 days</span>
                         <span class="ritual-price">€32</span>
                     </div>
                 </div>
@@ -1063,112 +747,95 @@
         </div>
     </section>
 
-    <!-- Page Samples -->
-    <section class="samples">
-        <div class="section-header">
-            <span class="section-label">◇ Inside Pages</span>
-            <h2>A Glimpse of the Journey</h2>
-        </div>
-        <div class="samples-showcase">
-            <div class="sample-page">
-                <div class="sample-header">Day One</div>
-                <div class="sample-lines">
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                </div>
-                <div class="sample-prompt">"What am I ready to release?"</div>
+    <!-- Features -->
+    <section class="features" id="inside">
+        <div class="features-grid">
+            <div class="features-image">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80" alt="Writing ritual">
             </div>
-            <div class="sample-page">
-                <div class="sample-header">Reflection</div>
-                <div class="sample-lines">
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
+            <div class="features-content">
+                <h2>More Than a Journal</h2>
+                <p>Each ritual is carefully structured to guide you through a complete transformation journey.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">📖</div>
+                        <div>
+                            <h4>Introduction & Guidance</h4>
+                            <p>Context and intention to begin your journey right</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✍️</div>
+                        <div>
+                            <h4>Daily Practices</h4>
+                            <p>Structured exercises designed by mindfulness experts</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">◇</div>
+                        <div>
+                            <h4>Weekly Reflections</h4>
+                            <p>Check-ins to track progress and deepen insights</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">☽</div>
+                        <div>
+                            <h4>Closing Ceremony</h4>
+                            <p>Integration practices to seal your transformation</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="sample-prompt">"What patterns do I notice?"</div>
-            </div>
-            <div class="sample-page">
-                <div class="sample-header">Gratitude</div>
-                <div class="sample-lines">
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                </div>
-                <div class="sample-prompt">"Three blessings today..."</div>
-            </div>
-            <div class="sample-page">
-                <div class="sample-header">Integration</div>
-                <div class="sample-lines">
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                    <div class="sample-line"></div>
-                </div>
-                <div class="sample-prompt">"How will I carry this forward?"</div>
             </div>
         </div>
     </section>
 
-    <!-- Materials -->
-    <section class="materials organic-bg">
-        <div class="materials-content">
-            <div class="materials-text">
-                <h2>Crafted with Intention</h2>
-                <p>Every detail matters. From the weight of the paper to the binding that lies flat — made to be used, not just admired.</p>
-                <div class="materials-list">
-                    <div class="material-item">
-                        <span>📜</span>
-                        120gsm cream paper — gentle on the eyes
-                    </div>
-                    <div class="material-item">
-                        <span>📖</span>
-                        Lay-flat binding — write with ease
-                    </div>
-                    <div class="material-item">
-                        <span>🌿</span>
-                        FSC-certified sustainable materials
-                    </div>
-                    <div class="material-item">
-                        <span>✨</span>
-                        Soft-touch matte cover
-                    </div>
-                </div>
-            </div>
-            <div class="materials-image">
-                <img src="https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?w=600&q=80" alt="Journal detail">
-            </div>
+    <!-- Atmosphere -->
+    <section class="atmosphere">
+        <div class="atmosphere-bg"></div>
+        <div class="atmosphere-content">
+            <h2>Create Your Sacred Space</h2>
+            <p>Light a candle. Pour your tea. Open your ZenSlate. This is your time — a ritual just for you.</p>
         </div>
     </section>
 
     <!-- CTA -->
-    <section class="cta-section organic-bg">
+    <section class="cta">
         <div class="cta-content">
-            <h2>Begin Your <em>Ritual</em></h2>
+            <h2>Begin Your Ritual</h2>
             <p>Every transformation starts with a single page. Choose the journal that calls to you.</p>
             <div class="cta-buttons">
                 <a href="#rituals" class="btn-light">Shop All Rituals</a>
-                <a href="#" class="btn-outline-light">Gift a Ritual</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">ZenSlate</div>
-        <div class="footer-links">
-            <a href="#">About</a>
-            <a href="#">Shipping</a>
-            <a href="#">Contact</a>
-            <a href="#">Instagram</a>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>ZenSlate</h4>
+                <p>Ritual journals for the modern seeker</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Shipping</a>
+                <a href="#">Contact</a>
+                <a href="#">Instagram</a>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
